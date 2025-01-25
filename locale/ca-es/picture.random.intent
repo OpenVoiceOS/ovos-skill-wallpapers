@@ -1,4 +1,4 @@
 mostra('m|) (un|una|) (altre|altra|) (imatge|dibuix|foto|fotografia) (nou|nova|aleatori|aleatòria)
 mostra('m|) (un|una|) (altre|altra|) (nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)
 mostra('m|) (un|una|) (imatge|dibuix|foto|fotografia)
-mostra('m|) (un|una|)(nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)
+mostra('m|) (un|una|) (nou|nova|aleatori|aleatòria) (imatge|dibuix|foto|fotografia)
