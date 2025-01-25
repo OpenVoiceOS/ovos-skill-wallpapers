@@ -1,14 +1,14 @@
 {
   "searching_random.dialog": [
-    "ok, suche nach (Bildern)"
+    "ok, ich suche nach (Bildern)"
   ],
   "no.more.pictures.dialog": [
     "Ich habe keine Bilder mehr",
     "Ich habe keine Bilder mehr, die ich dir zeigen kann"
   ],
   "searching.dialog": [
-    "Suche nach Bildern mit {query}",
-    "Suche nach Bildern zu {query}"
+    "Ich suche nach Bildern mit {query}",
+    "Ich suche nach Bildern zu {query}"
   ],
   "wallpaper.fail.dialog": [
     "Ich weiß nicht, wie ich das Hintergrundbild auf dieser Plattform ändern kann"
