@@ -1,20 +1,12 @@
 # Changelog
 
-## [1.0.11a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.11a1) (2025-01-25)
+## [1.0.12a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a1) (2025-01-25)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.10a1...1.0.11a1)
-
-**Merged pull requests:**
-
-- fix: syntax error in catalan [\#43](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/43) ([JarbasAl](https://github.com/JarbasAl))
-
-## [1.0.10a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.10a1) (2024-12-11)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.9...1.0.10a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.11...1.0.12a1)
 
 **Merged pull requests:**
 
-- adding German translations from joergz2 [\#41](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/41) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+- Fix autos [\#45](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/45) ([JarbasAl](https://github.com/JarbasAl))
 
 
 
