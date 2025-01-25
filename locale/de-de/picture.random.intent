@@ -1,4 +1,4 @@
-(zeige@lade) mir ein (zufälliges|neues|anderes|noch ein anderes) (Bild|Foto|Abbildung)
-(zeige|lade) (zufälliges|neues|anderes|ein anderes) (Bild|Foto|Abbildung)
 (zeige|lade) mir ein (Bild | ein Foto | eine Abbildung)
-(zeige|zufälliges|neues) (Bild|Foto|Abbildung)
+(zeige|lade) mir ein (zufälliges|neues|anderes|noch ein anderes) (Bild|Foto|Abbildung)
+(zeige|lade|öffne|neues) (bild|foto)
+zeige ein (neues|zufälliges|anderes) (Bild|Foto)

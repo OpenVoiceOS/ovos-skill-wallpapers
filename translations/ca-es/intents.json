@@ -6,7 +6,7 @@
     "mostra('m|) (un|una|) (altre|altra|) (imatge|dibuix|foto|fotografia) (nou|nova|aleatori|aleatòria)",
     "mostra('m|) (un|una|) (imatge|dibuix|foto|fotografia)",
     "mostra('m|) (un|una|) (altre|altra|) (nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)",
-    "mostra('m|) (un|una|)(nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)"
+    "mostra('m|) (un|una|) (nou|nova|aleatori|aleatòria) (imatge|dibuix|foto|fotografia)"
   ],
   "wallpaper.about.intent": [
     "(canvia|posa|estableix|establix|defineix|definix) (un|una|el|la|es|sa|)(nou|nova|) (fons|fons de pantalla|pantalla d'inici) (nou|nova|) (aleatori|aleatòria|) (sobre |de |d'|relacionat amb |relacionada amb ){query}"
@@ -14,7 +14,7 @@
   "picture.about.intent": [
     "mostra('m|) (un|una|) (altre|altra|) (imatge|dibuix|foto|fotografia) (nou|nova|aleatori|aleatòria) (sobre |de |d'|relacionat amb |relacionada amb ){query}",
     "mostra('m|) (un|una|) (imatge|dibuix|foto|fotografia) (sobre |de |d'|relacionat amb ){query}",
-    "mostra('m|) (un|una|) (altre|altra|) (nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)(sobre |de |d'|relacionat amb |relacionada amb ){query}",
-    "mostra('m|) (un|una|)(nou|nova|aleatori|aleatòria)(imatge|dibuix|foto|fotografia)(sobre |de |d'|relacionat amb |relacionada amb ){query}"
+    "mostra('m|) (un|una|) (altre|altra|) (nou|nova|aleatori|aleatòria) (imatge|dibuix|foto|fotografia) (sobre |de |d'|relacionat amb |relacionada amb ){query}",
+    "mostra('m|) (un|una|) (nou|nova|aleatori|aleatòria) (imatge|dibuix|foto|fotografia) (sobre |de |d'|relacionat amb |relacionada amb ){query}"
   ]
 }

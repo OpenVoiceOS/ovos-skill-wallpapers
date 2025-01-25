@@ -1,4 +1,3 @@
-(lade|zeige|zufälliges|neues) (Bild|Foto|Abbildung) (über|für|mit) {query}
-(zeige|lade) (zufälliges|neues|anderes|ein anderes) (Bild|Foto|Abbildung) (über|für|mit) {query}
+(zeige|lade) ein (zufälliges|anderes) (bild|foto) mit {query}
 (zeige|lade) mir ein (Bild|Foto|Abbildung) (über|für|mit) {query}
 (zeige|lade) mir ein (zufälliges|neues|anderes|noch ein anderes) (Bild|Foto|Abbild) (über|für|mit) {query}
