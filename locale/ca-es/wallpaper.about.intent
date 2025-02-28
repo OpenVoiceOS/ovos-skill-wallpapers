@@ -1,1 +1,1 @@
-(canvia|posa|estableix|establix|defineix|definix) (un|una|el|la|es|sa|)(nou|nova|) (fons|fons de pantalla|pantalla d'inici) (nou|nova|) (aleatori|aleatòria|) (sobre |de |d'|relacionat amb |relacionada amb ){query}
+(canvia|posa|estableix|establix|defineix|definix) (un|una|el|la|es|sa|)(nou|nova|) (fons|fons de pantalla|pantalla d'inici) (nou|nova|) (aleatori|aleatòria|) (sobre |de |d'|relacionat amb |relacionada amb ) {query}
