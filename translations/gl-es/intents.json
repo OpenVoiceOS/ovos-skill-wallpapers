@@ -1,24 +1,20 @@
 {
-    "wallpaper.random.intent": [
-        "(cambiar|mudar) o fondo de escritorio actual",
-        "mudar o fondo de escritorio da pantalla de benvida",
-        "(cambiar|mudar) o fondo de escritorio",
-        "(cambiar|mudar) fondo de escritorio",
-        "(cambiar|mudar|) fondo de escritorio (aleatorio|novo)"
-    ],
-    "picture.random.intent": [
-        "(mostrar|ensinar) (outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta)",
-        "(móstrame|ensíname) unha (foto|fotografía|imaxe)",
-        "(móstrame|ensíname) (unha|outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta)",
-        "(mostrar|ensinar) (foto|fotografía|imaxe) (aleatoria|nova)"
-    ],
-    "wallpaper.about.intent": [
-        "(cambiar|mudar) fondo de escritorio (aleatorio|novo) (sobre|para|con|de) {query}"
-    ],
-    "picture.about.intent": [
-        "(mostrar|ensinar) (outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta) (sobre|para|con) {query}",
-        "(móstrame|ensíname) unha (foto|fotografía|imaxe) (sobre|para|con) {query}",
-        "(móstrame|ensíname) (unha|outra) (foto|fotografía|imaxe) (aleatoria|nova||distinta) (sobre|para|con) {query}",
-        "(mostrar|ensinar) (foto|fotografía|imaxe) (nova|aleatoria) (sobre|para|con) {query}"
-    ]
+  "wallpaper.random.intent": [
+    "(cambiar|mudar) o fondo de escritorio actual"
+  ],
+  "picture.random.intent": [
+    "(mostrar|ensinar) (outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta)",
+    "(móstrame|ensíname) unha (foto|fotografía|imaxe)",
+    "(móstrame|ensíname) (unha|outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta)",
+    "(mostrar|ensinar) (foto|fotografía|imaxe) (aleatoria|nova)"
+  ],
+  "wallpaper.about.intent": [
+    "(cambiar|mudar) fondo de escritorio (aleatorio|novo) (sobre|para|con|de) {query}"
+  ],
+  "picture.about.intent": [
+    "(mostrar|ensinar) (outra) (foto|fotografía|imaxe) (aleatoria|nova|distinta) (sobre|para|con) {query}",
+    "(móstrame|ensíname) unha (foto|fotografía|imaxe) (sobre|para|con) {query}",
+    "(móstrame|ensíname) (unha|outra) (foto|fotografía|imaxe) (aleatoria|nova||distinta) (sobre|para|con) {query}",
+    "(mostrar|ensinar) (foto|fotografía|imaxe) (nova|aleatoria) (sobre|para|con) {query}"
+  ]
 }
