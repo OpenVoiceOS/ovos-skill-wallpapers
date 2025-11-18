@@ -1,0 +1,19 @@
+{
+  "searching_random.dialog": [
+    "Vale, buscando (fotos|imágenes)"
+  ],
+  "no.more.pictures.dialog": [
+    "No tengo más fotos",
+    "Ya no tengo más fotos para mostrarte."
+  ],
+  "searching.dialog": [
+    "Buscando imágenes con {query}",
+    "Buscando imágenes sobre {query}"
+  ],
+  "wallpaper.fail.dialog": [
+    "No sé cómo cambiar el fondo de pantalla en esta plataforma."
+  ],
+  "wallpaper.changed.dialog": [
+    "Disfruta de tu nuevo fondo de pantalla"
+  ]
+}
