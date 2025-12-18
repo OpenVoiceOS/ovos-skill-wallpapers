@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12a3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a3) (2025-12-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a2...1.0.12a3)
+
+**Merged pull requests:**
+
+- chore: Configure Renovate [\#50](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/50) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [1.0.12a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a2) (2025-11-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a1...1.0.12a2)
