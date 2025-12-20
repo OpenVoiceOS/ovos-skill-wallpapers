@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12a6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a6) (2025-12-20)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a5...1.0.12a6)
+
+**Merged pull requests:**
+
+- chore\(deps\): update dependency ovos-workshop to v8 [\#58](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/58) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [1.0.12a5](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a5) (2025-12-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a4...1.0.12a5)
