@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.12a7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a7) (2026-01-19)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a6...1.0.12a7)
+
+**Merged pull requests:**
+
+- es-es/translate [\#61](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/61) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
+
 ## [1.0.12a6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.12a6) (2025-12-20)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a5...1.0.12a6)
