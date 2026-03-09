@@ -1,0 +1,30 @@
+{
+    "picture.about.intent": [
+        "affiche une image de {query}",
+        "affiche une photo de {query}",
+        "montre-moi une image de {query}",
+        "montre-moi une photo de {query}",
+        "affiche une autre image de {query}",
+        "montre-moi une nouvelle image de {query}"
+    ],
+    "picture.random.intent": [
+        "affiche une image",
+        "affiche une photo",
+        "montre-moi une image",
+        "montre-moi une photo",
+        "affiche une autre image",
+        "montre-moi une nouvelle image"
+    ],
+    "wallpaper.about.intent": [
+        "change le fond d'\u00e9cran pour {query}",
+        "change le fond d'\u00e9cran en {query}",
+        "mets un fond d'\u00e9cran sur {query}",
+        "mets un fond d'\u00e9cran de {query}"
+    ],
+    "wallpaper.random.intent": [
+        "change le fond d'\u00e9cran",
+        "nouveau fond d'\u00e9cran",
+        "mets un autre fond d'\u00e9cran",
+        "change le fond d'\u00e9cran actuel"
+    ]
+}
