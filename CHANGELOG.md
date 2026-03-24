@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.14a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a1) (2026-03-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.13a1...1.0.14a1)
+
+**Merged pull requests:**
+
+- fix: rename bare lang code locale directories [\#64](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/64) ([ovos-localize[bot]](https://github.com/apps/ovos-localize))
+
 ## [1.0.13a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.13a1) (2026-03-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.12a8...1.0.13a1)
