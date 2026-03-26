@@ -29,7 +29,7 @@ jobs:
       - name: Install skill
         run: |
           pip install .
-      - uses: pypa/gh-action-pip-audit@v1.0.7
+      - uses: pypa/gh-action-pip-audit@v1.1.0
         with:
           # Ignore setuptools vulnerability we can't do much about
           # Ignore numpy vulnerability affecting latest version for Py3.7
