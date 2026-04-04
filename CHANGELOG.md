@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.14a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a2) (2026-04-04)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a1...1.0.14a2)
+
+**Merged pull requests:**
+
+- ci: modernize GitHub workflows [\#66](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/66) ([JarbasAl](https://github.com/JarbasAl))
+- fix\(i18n\): normalize locale folders to canonical BCP-47 [\#65](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/65) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.14a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a1) (2026-03-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.13a1...1.0.14a1)
