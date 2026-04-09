@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.14a3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a3) (2026-04-09)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a2...1.0.14a3)
+
+**Merged pull requests:**
+
+- chore\(ovos-skill-wallpapers\): allow ovos-workshop\<9.0.0 [\#68](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/68) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.14a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a2) (2026-04-04)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a1...1.0.14a2)
