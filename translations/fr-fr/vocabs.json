@@ -4,12 +4,12 @@
     "au hasard"
   ],
   "next.voc": [
-    "après",
-    "suivant"
+    "suivant",
+    "image suivante"
   ],
   "previous.voc": [
-    "avant",
     "précédent",
+    "image précédente",
     "reviens en arrière"
   ],
   "set.voc": [
@@ -62,7 +62,7 @@
   "AmateurEarthPorn.voc": [
     "AmateurEarthPorn",
     "nature amateur",
-    "terre amateur"
+    "paysages amateurs"
   ],
   "AmateurPhotography.voc": [
     "AmateurPhotography",
@@ -160,13 +160,14 @@
     "bandes dessinées"
   ],
   "Conservation.voc": [
-    "Conservation",
-    "conservation"
+    "conservation",
+    "protection nature"
   ],
   "CulinaryPorn.voc": [
     "CulinaryPorn",
     "cuisine",
-    "art culinaire"
+    "art culinaire",
+    "gastronomie"
   ],
   "DesertPorn.voc": [
     "DesertPorn",
@@ -187,7 +188,8 @@
   "EarthPorn.voc": [
     "EarthPorn",
     "Earth Porn",
-    "nature"
+    "paysages naturels",
+    "grands paysages"
   ],
   "EarthPornVids.voc": [
     "EarthPornVids",
@@ -224,7 +226,7 @@
   "FoodPorn.voc": [
     "FoodPorn",
     "nourriture",
-    "cuisine"
+    "plats"
   ],
   "FossilPorn.voc": [
     "FossilPorn",
@@ -320,7 +322,7 @@
   ],
   "MTGPorn.voc": [
     "MTGPorn",
-    "Magic"
+    "Magic the Gathering"
   ],
   "MachinePorn.voc": [
     "MachinePorn",
@@ -367,8 +369,8 @@
     "National Geographic"
   ],
   "Nature.voc": [
-    "Nature",
-    "nature"
+    "nature",
+    "plein air"
   ],
   "NatureGifs.voc": [
     "NatureGifs",
@@ -384,7 +386,7 @@
   ],
   "NotSafeForNature.voc": [
     "NotSafeForNature",
-    "nature sauvage"
+    "nature en danger"
   ],
   "OrganizationPorn.voc": [
     "OrganizationPorn",
@@ -484,7 +486,7 @@
   ],
   "ThingsCutInHalfPorn.voc": [
     "ThingsCutInHalfPorn",
-    "objets coupés"
+    "coupés en deux"
   ],
   "ToolPorn.voc": [
     "ToolPorn",

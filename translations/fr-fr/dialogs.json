@@ -12,10 +12,10 @@
     "Très bien, je cherche des photos."
   ],
   "wallpaper.changed.dialog": [
-    "Profitez de votre nouveau fond d'écran.",
+    "Votre nouveau fond d'écran est prêt.",
     "Votre fond d'écran a été changé."
   ],
   "wallpaper.fail.dialog": [
-    "Je ne sais pas changer le fond d'écran sur cette plateforme."
+    "Je ne peux pas changer le fond d'écran sur cette plateforme."
   ]
 }
