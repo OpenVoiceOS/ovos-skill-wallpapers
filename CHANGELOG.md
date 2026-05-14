@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.14a4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a4) (2026-05-14)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a3...1.0.14a4)
+
+**Merged pull requests:**
+
+- \[codex\] Complete fr-FR wallpapers locale [\#70](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/70) ([goldyfruit](https://github.com/goldyfruit))
+
 ## [1.0.14a3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a3) (2026-04-09)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a2...1.0.14a3)
