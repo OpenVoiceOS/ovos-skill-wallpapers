@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.14a5](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a5) (2026-07-03)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a4...1.0.14a5)
+
+**Merged pull requests:**
+
+- chore: add ovoscope end2end intent-routing tests [\#72](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/72) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.14a4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a4) (2026-05-14)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a3...1.0.14a4)
