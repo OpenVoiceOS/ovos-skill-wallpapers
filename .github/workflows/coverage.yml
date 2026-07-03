@@ -11,7 +11,9 @@ jobs:
     secrets: inherit
     with:
       python_version: '3.11'
-      coverage_source: 'ovos_skill_wallpapers'
-      test_path: 'test/'
+      coverage_source: 'skill_ovos_wallpapers'
+      test_path: 'test/end2end/'
+      test_extras: 'test'
+      system_deps: 'swig libfann-dev'
       install_extras: ''
       min_coverage: 0

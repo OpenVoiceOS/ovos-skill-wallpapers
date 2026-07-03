@@ -71,6 +71,14 @@ setup(
     package_data={SKILL_PKG: find_resource_files()},
     packages=[SKILL_PKG],
     include_package_data=True,
+    extras_require={
+        "test": [
+            "pytest",
+            "pytest-timeout",
+            "ovoscope>=1.0.1a1",
+            "ovos-padatious>=1.0.0",
+        ],
+    },
     keywords='ovos skill plugin',
     entry_points={'ovos.plugin.skill': PLUGIN_ENTRY_POINT}
 )
