@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.14a7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a7) (2026-08-12)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a6...1.0.14a7)
+
+**Merged pull requests:**
+
+- test: add golden-utterance e2e suite [\#77](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/77) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.14a6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a6) (2026-08-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a5...1.0.14a6)
