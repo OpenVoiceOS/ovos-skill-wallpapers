@@ -24,7 +24,13 @@ class TestWallpapersIntentsEnUS(unittest.TestCase):
         cls.minicroft.stop()
 
     def _assert_intent(self, text, intent_file):
-        intent_msg = f"{SKILL_ID}:{intent_file}"
+        # dispatched intent messages drop the ".intent" file suffix (OVOS-INTENT-2
+        # naming) -- pinning the suffixed form here made the eof_msgs cutoff never
+        # fire (so every case ran the full 30s timeout) and the final assertion
+        # always fail; see the golden-utterance suite's tolerant matcher for the
+        # same fact documented elsewhere in this repo.
+        intent_base = intent_file[:-len(".intent")] if intent_file.endswith(".intent") else intent_file
+        intent_msg = f"{SKILL_ID}:{intent_base}"
         session = Session("test-session")
         session.lang = LANG
         session.pipeline = [

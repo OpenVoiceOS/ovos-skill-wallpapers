@@ -77,6 +77,10 @@ setup(
             "pytest-timeout",
             "ovoscope>=1.0.1a1",
             "ovos-padatious>=1.0.0",
+            # the golden-utterance e2e suite exercises this skill's adapt
+            # intents (NextPictureIntent/PrevPictureIntent/MakeWallpaperIntent)
+            # in addition to its padatious/padacioso ones.
+            "ovos-adapt-parser",
         ],
     },
     keywords='ovos skill plugin',
