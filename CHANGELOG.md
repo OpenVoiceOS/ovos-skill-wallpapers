@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.15a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.15a1) (2026-08-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a7...1.0.15a1)
+
+**Merged pull requests:**
+
+- fix: stop leaking SlideShow adapt context from boot-time wallpaper fetch [\#78](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/78) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.14a7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.14a7) (2026-08-12)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a6...1.0.14a7)
