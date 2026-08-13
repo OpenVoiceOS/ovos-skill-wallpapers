@@ -72,7 +72,6 @@ class WallpapersSkill(OVOSSkill):
     def fetch_wallpapers(self, query=None) -> str:
         self.picture_list = get_wallpapers(query)
         self.pic_idx = 0
-        self.set_context("SlideShow")
         return self.picture_list[self.pic_idx]
 
     def change_wallpaper(self, image):
@@ -86,6 +85,7 @@ class WallpapersSkill(OVOSSkill):
     def handle_random_wallpaper(self, message):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
+        self.set_context("SlideShow")
         self.change_wallpaper(image)
         self.speak_dialog("wallpaper.changed")
 
@@ -93,6 +93,7 @@ class WallpapersSkill(OVOSSkill):
     def handle_random_picture(self, message=None):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
+        self.set_context("SlideShow")
         self.gui.show_image(image)
 
     @intent_handler("wallpaper.about.intent")
@@ -100,6 +101,7 @@ class WallpapersSkill(OVOSSkill):
         query = message.data["query"]
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
+        self.set_context("SlideShow")
         self.change_wallpaper(image)
         self.speak_dialog("wallpaper.changed")
 
@@ -108,6 +110,7 @@ class WallpapersSkill(OVOSSkill):
         query = message.data["query"]
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
+        self.set_context("SlideShow")
         self.gui.show_image(image)
 
     @intent_handler(IntentBuilder("NextPictureIntent")
