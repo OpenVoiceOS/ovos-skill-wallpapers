@@ -28,13 +28,16 @@ the skill loaded, before any utterance was ever fired, making the context
 guard a permanent no-op. That leak has been fixed: ``fetch_wallpapers`` no
 longer sets the context itself, so a brand-new session with no prior
 slideshow-starting utterance correctly does NOT match these intents (see
-the now-xfailed "after"/"before"/"wall paper change" rows below, and
+the still-xfailed "after"/"before"/"wall paper change" rows below, and
 ``test_slideshow_context_gate.py`` for dedicated two-turn coverage of the
-fixed behavior). Real two-turn (prime-then-gate) coverage cannot go fully
-green yet because context-gated matching for TEXT queries is currently
-broken upstream (core#857 pending); see that test module's own xfail
-markers and reasons for exactly which direction is blocked and which
-already passes.
+fixed behavior). Those single-turn golden rows fire the utterance with no
+priming turn at all, so they are expected to keep failing on their own
+terms -- unrelated to the two-turn priming path, which is NOT blocked
+upstream: it was blocked by this suite's own ``_fire()`` helper handing
+back a stale local ``Session`` between turns instead of the live,
+server-mutated one, wiping out the context set in turn 1 when turn 2's
+stale snapshot was folded server-side. See ``test_slideshow_context_gate.py``
+for the fix; two-turn priming now passes with no core or workshop changes.
 
 Pipeline order note: an adapt-high-before-padatious/padacioso-high test
 pipeline was tried first and produced a false collision on "change the wall
@@ -120,22 +123,26 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
 # module docstring. Now that the context is only set by a user-facing
 # handler that actually starts a slideshow/shows a picture, a fresh,
 # unprimed session correctly does NOT match these intents, so these single
-# -turn golden rows fail as written. Priming with a "show me a picture"
-# utterance first would normally fix this, but that two-turn path is
-# currently blocked upstream by core#857 (context-gated matching is broken
-# for text queries) -- see ``test_slideshow_context_gate.py`` for the
-# two-turn coverage and its own xfail markers.
+# -turn golden rows fail as written -- they are single-turn by construction
+# (the golden corpus fires one utterance per row) and were never expected to
+# carry priming context. That is unrelated to two-turn priming, which is
+# NOT blocked upstream (see test_slideshow_context_gate.py, which covers
+# and passes the two-turn prime-then-gate path with no core/workshop
+# changes needed).
 _XFAIL_REASONS = {
     "after": "requires SlideShow context from a prior priming utterance; "
-             "single-turn golden row has no priming and two-turn priming is "
-             "blocked by core#857 (see test_slideshow_context_gate.py)",
+             "this golden row is single-turn by construction and carries no "
+             "priming turn (see test_slideshow_context_gate.py for two-turn "
+             "coverage of the primed case, which passes)",
     "before": "requires SlideShow context from a prior priming utterance; "
-              "single-turn golden row has no priming and two-turn priming is "
-              "blocked by core#857 (see test_slideshow_context_gate.py)",
+              "this golden row is single-turn by construction and carries no "
+              "priming turn (see test_slideshow_context_gate.py for two-turn "
+              "coverage of the primed case, which passes)",
     "wall paper change": "requires SlideShow context from a prior priming "
-                          "utterance; single-turn golden row has no priming "
-                          "and two-turn priming is blocked by core#857 (see "
-                          "test_slideshow_context_gate.py)",
+                          "utterance; this golden row is single-turn by "
+                          "construction and carries no priming turn (see "
+                          "test_slideshow_context_gate.py for two-turn "
+                          "coverage of the primed case, which passes)",
 }
 
 

@@ -21,38 +21,24 @@ This module asserts both directions of that intended behavior:
   match ``NextPictureIntent`` (this is the direction that used to be a
   permanent false-positive before the fix).
 
-Known current-stack caveat: context-gated matching for TEXT queries is
-broken upstream (core#857, pending release) -- the adapt context set via
-``set_context`` is not reliably consulted when the pipeline routes a plain
-text utterance (as opposed to a live audio/voice loop) through the same
-session. This was verified locally against this repo's pinned deps before
-writing the xfail below: the POSITIVE (prime -> gate opens) direction does
-NOT pass yet under the current stack, so it is marked strict xfail
-referencing core#857 rather than silently skipped or weakened. The
-NEGATIVE (fresh session -> gate stays shut) direction was also verified
-locally and DOES pass -- the fix correctly blocks the unprimed case, so
-that assertion is a normal (non-xfail) test.
-
-Honesty note on the NEGATIVE direction: it was also checked against the
-pre-fix code (boot-time ``set_context("SlideShow")`` still present in
-``fetch_wallpapers``) and it passes there too -- it does not discriminate
-fixed from unfixed under the currently pinned deps. That is because
-``self.set_context(...)`` at boot time has no active user session to
-attach to, and this stack's session-scoped context (OVOS-CONTEXT-1) does
-not leak a boot-time call into a later, unrelated session's
-``intent_context`` map; combined with core#857 breaking text-query context
-matching generally, "after" never matches on a fresh session either way
-under this environment. The fix (removing the boot-time ``set_context``
-call from ``fetch_wallpapers`` and only setting it from user-facing
-handlers) is still the correct thing to do -- it removes a real,
-misleading side effect that ties adapt-engine context to network-fetch
-timing rather than to actual user action -- but this NEGATIVE test should
-not be read as a red/green regression proof under current pins; it
-documents and locks in the intended behavior instead.
+Both directions pass. The POSITIVE direction was previously marked xfail,
+blaming a supposed upstream text-query context-matching defect (core#857).
+That diagnosis was wrong: the real bug was in this test's own ``_fire()``
+helper, which returned the *local* pre-turn ``Session`` object instead of
+the live, server-mutated session for that ``session_id``. Turn 1 sets the
+"SlideShow" context on the ``SessionManager``-registry singleton, but the
+stale local object handed back to the caller never saw that mutation. Turn
+2 then serialized that stale, empty snapshot into its outgoing Message, and
+the server-side session fold (full replace, last-writer-wins) clobbered the
+registry's context-bearing session with it -- so "after" was evaluated
+against a session that had never been primed, and the gate never opened.
+``_fire()`` now looks the live session back up in ``SessionManager.sessions``
+after the turn completes, and the POSITIVE assertion passes with no core or
+workshop changes required.
 """
 import pytest
 from ovos_bus_client.message import Message
-from ovos_bus_client.session import Session
+from ovos_bus_client.session import Session, SessionManager
 from ovoscope import CaptureSession, get_minicroft
 
 SKILL_ID = "skill-ovos-wallpapers.openvoiceos"
@@ -115,22 +101,18 @@ def _fire(mc, session, text):
     )
     capture.capture(utterance, timeout=30)
     types = [m.msg_type for m in capture.finish()]
-    # the session mutated (context set) server-side during handling; hand
-    # the updated serialized session back to the caller for the next turn
-    return types, session
+    # the session mutates (context set) server-side during handling, on the
+    # SessionManager-registry singleton for this session_id -- NOT on the
+    # local `session` object, which stays a frozen pre-turn snapshot. Look
+    # the live session back up in the registry so the caller's next turn
+    # actually observes what this turn wrote (e.g. the SlideShow context),
+    # instead of re-serializing the stale local copy and having the
+    # server-side fold (full replace, last-writer-wins) wipe it out again.
+    live_session = SessionManager.sessions.get(session.session_id, session)
+    return types, live_session
 
 
 @pytest.mark.timeout(90)
-@pytest.mark.xfail(
-    reason="context-gated matching for TEXT queries is broken upstream "
-           "(core#857, pending release): priming a session with 'show me a "
-           "picture' sets the SlideShow context server-side, but the "
-           "follow-up 'after' utterance in the same session still does not "
-           "get routed to NextPictureIntent under the current pinned "
-           "stack. Verified locally before marking. Will go green once "
-           "core#857 ships.",
-    strict=True,
-)
 def test_next_picture_matches_after_priming_slideshow(minicroft):
     """Starting a slideshow in a session should open the gate for
     NextPictureIntent within that SAME session."""
