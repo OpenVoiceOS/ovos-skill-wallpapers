@@ -14,23 +14,27 @@ point -- and therefore the routed message prefix -- is
 against the runtime id, not the corpus label.
 
 ``NextPictureIntent``, ``PrevPictureIntent`` and ``MakeWallpaperIntent`` are
-adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). This
-looks session-scoped (``self.set_context("SlideShow")`` runs inside
-``fetch_wallpapers``, called from the picture/wallpaper handlers) but is
-NOT: ``initialize()`` self-emits its own
-``"{skill_id}.get.wallpaper.collection"`` event on skill boot, which is
-wired to ``handle_wallpaper_scan`` -> ``fetch_wallpapers`` -> the same
-``set_context`` call -- so "SlideShow" is already set globally the moment
-the skill loads, before any utterance is ever fired, and effectively never
-gates anything in practice. Confirmed by isolated ovoscope capture (a
-brand-new session firing "after" with zero prior utterances still routes
-to ``NextPictureIntent``) before writing this suite; a first draft of this
-docstring assumed real session-scoped gating and primed each row with a
-"show me a picture" utterance, but that was based on a false premise (the
-priming "worked" only because the intent already matched unconditionally,
-not because of the priming) so it has been corrected here. No priming is
-needed or performed; this is flagged as a real, out-of-scope skill defect
-(the context guard is a no-op) rather than silently worked around.
+adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). This is
+now genuinely session-scoped: ``self.set_context("SlideShow")`` is only set
+by the user-facing handlers that actually start a slideshow or show a
+picture/wallpaper (``handle_random_wallpaper``, ``handle_random_picture``,
+``handle_wallpaper_about``, ``handle_picture_about``). It used to also be
+set as a side effect of ``initialize()`` self-emitting
+``"{skill_id}.get.wallpaper.collection"`` on skill boot (wired to
+``handle_wallpaper_scan`` -> ``fetch_wallpapers``, which used to call
+``set_context`` unconditionally on every fetch, including the boot-time
+PHAL collection scan) -- so "SlideShow" used to be set globally the moment
+the skill loaded, before any utterance was ever fired, making the context
+guard a permanent no-op. That leak has been fixed: ``fetch_wallpapers`` no
+longer sets the context itself, so a brand-new session with no prior
+slideshow-starting utterance correctly does NOT match these intents (see
+the now-xfailed "after"/"before"/"wall paper change" rows below, and
+``test_slideshow_context_gate.py`` for dedicated two-turn coverage of the
+fixed behavior). Real two-turn (prime-then-gate) coverage cannot go fully
+green yet because context-gated matching for TEXT queries is currently
+broken upstream (core#857 pending); see that test module's own xfail
+markers and reasons for exactly which direction is blocked and which
+already passes.
 
 Pipeline order note: an adapt-high-before-padatious/padacioso-high test
 pipeline was tried first and produced a false collision on "change the wall
@@ -107,7 +111,32 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
 
 # Rows that do not currently route correctly, with the root-caused reason.
 # All xfails are strict=True: a row that starts passing must fail the build.
-_XFAIL_REASONS = {}
+#
+# "after"/"before"/"wall paper change" require the "SlideShow" adapt context
+# (see NextPictureIntent/PrevPictureIntent/MakeWallpaperIntent in
+# ``__init__.py``). Until the boot-time context leak was fixed, the context
+# was set globally on skill load and these single-turn rows (no priming
+# utterance) matched unconditionally -- a false green documented in the old
+# module docstring. Now that the context is only set by a user-facing
+# handler that actually starts a slideshow/shows a picture, a fresh,
+# unprimed session correctly does NOT match these intents, so these single
+# -turn golden rows fail as written. Priming with a "show me a picture"
+# utterance first would normally fix this, but that two-turn path is
+# currently blocked upstream by core#857 (context-gated matching is broken
+# for text queries) -- see ``test_slideshow_context_gate.py`` for the
+# two-turn coverage and its own xfail markers.
+_XFAIL_REASONS = {
+    "after": "requires SlideShow context from a prior priming utterance; "
+             "single-turn golden row has no priming and two-turn priming is "
+             "blocked by core#857 (see test_slideshow_context_gate.py)",
+    "before": "requires SlideShow context from a prior priming utterance; "
+              "single-turn golden row has no priming and two-turn priming is "
+              "blocked by core#857 (see test_slideshow_context_gate.py)",
+    "wall paper change": "requires SlideShow context from a prior priming "
+                          "utterance; single-turn golden row has no priming "
+                          "and two-turn priming is blocked by core#857 (see "
+                          "test_slideshow_context_gate.py)",
+}
 
 
 def _load_golden_rows():
