@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.16a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.16a1) (2026-08-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.15a1...1.0.16a1)
+
+**Merged pull requests:**
+
+- fix: mislabeled context-gate xfails were the test's own stale-session bug [\#80](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/80) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.15a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.15a1) (2026-08-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.14a7...1.0.15a1)
