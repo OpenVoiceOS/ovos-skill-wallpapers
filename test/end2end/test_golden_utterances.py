@@ -6,47 +6,27 @@ shared ovoscope golden-utterance dataset, keyed by
 (module-scoped fixture) is booted for the whole suite; every row is its own
 parametrized test item.
 
-Runtime note: the corpus keys rows by the PyPI/repo-derived skill_id
-(``ovos-skill-wallpapers.openvoiceos``), but the skill's actual OPM entry
-point -- and therefore the routed message prefix -- is
-``skill-ovos-wallpapers.openvoiceos`` (see ``setup.py``'s
-``PLUGIN_ENTRY_POINT`` and ``test_intents_en_us.py``). This suite asserts
-against the runtime id, not the corpus label.
-
 ``NextPictureIntent``, ``PrevPictureIntent`` and ``MakeWallpaperIntent`` are
-adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). This is
-now genuinely session-scoped: ``self.set_context("SlideShow")`` is only set
-by the user-facing handlers that actually start a slideshow or show a
+adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). The
+context is session-scoped: ``self.set_context("SlideShow")`` is only set by
+the user-facing handlers that actually start a slideshow or show a
 picture/wallpaper (``handle_random_wallpaper``, ``handle_random_picture``,
-``handle_wallpaper_about``, ``handle_picture_about``). It used to also be
-set as a side effect of ``initialize()`` self-emitting
-``"{skill_id}.get.wallpaper.collection"`` on skill boot (wired to
-``handle_wallpaper_scan`` -> ``fetch_wallpapers``, which used to call
-``set_context`` unconditionally on every fetch, including the boot-time
-PHAL collection scan) -- so "SlideShow" used to be set globally the moment
-the skill loaded, before any utterance was ever fired, making the context
-guard a permanent no-op. That leak has been fixed: ``fetch_wallpapers`` no
-longer sets the context itself, so a brand-new session with no prior
-slideshow-starting utterance correctly does NOT match these intents (see
-the still-xfailed "after"/"before"/"wall paper change" rows below, and
-``test_slideshow_context_gate.py`` for dedicated two-turn coverage of the
-fixed behavior). Those single-turn golden rows fire the utterance with no
-priming turn at all, so they are expected to keep failing on their own
-terms -- unrelated to the two-turn priming path, which is NOT blocked
-upstream: it was blocked by this suite's own ``_fire()`` helper handing
-back a stale local ``Session`` between turns instead of the live,
-server-mutated one, wiping out the context set in turn 1 when turn 2's
-stale snapshot was folded server-side. See ``test_slideshow_context_gate.py``
-for the fix; two-turn priming now passes with no core or workshop changes.
+``handle_wallpaper_about``, ``handle_picture_about``); ``fetch_wallpapers``
+itself never sets the context, so a boot-time collection scan does not leak
+"SlideShow" globally. A brand-new session with no prior slideshow-starting
+utterance correctly does NOT match these intents, which is why the
+"after"/"before"/"wall paper change" rows below are xfailed here: they fire
+the utterance with no priming turn at all. ``test_slideshow_context_gate.py``
+covers the two-turn priming path (prime the context, then fire the follow-up)
+that these single-turn golden rows do not exercise.
 
-Pipeline order note: an adapt-high-before-padatious/padacioso-high test
-pipeline was tried first and produced a false collision on "change the wall
-paper" (claimed by ``MakeWallpaperIntent`` via loose ``set``/``wallpapers``
-keyword overlap instead of the intended ``wallpaper.random.intent``). That
-collision does not reproduce under the real ovos-core default pipeline
+Pipeline order note: this suite pins the real ovos-core default pipeline
 order (padatious/padacioso-high before adapt-high, confirmed via
-``Configuration()["intents"]["pipeline"]``), which is what this suite uses
--- so it was a test-construction artifact, not a skill defect.
+``Configuration()["intents"]["pipeline"]``). An adapt-high-before-padatious
+ordering produces a false collision on "change the wall paper" (claimed by
+``MakeWallpaperIntent`` via loose ``set``/``wallpapers`` keyword overlap
+instead of the intended ``wallpaper.random.intent``); pinning the real
+default order avoids that test-construction artifact.
 """
 import json
 from pathlib import Path
@@ -60,10 +40,9 @@ SKILL_ID = "skill-ovos-wallpapers.openvoiceos"
 LANG = "en-US"
 
 # Matches the real default ovos-core pipeline order (padatious/padacioso
-# high BEFORE adapt-high -- see Configuration()["intents"]["pipeline"]), not
-# an arbitrary order: an adapt-high-first ordering was tried first and
-# produced a false collision (see PR description) that does not reproduce
-# under the real default order.
+# high BEFORE adapt-high -- see Configuration()["intents"]["pipeline"]).
+# An adapt-high-first ordering produces a false collision on "change the
+# wall paper" that does not reproduce under this, the real default order.
 _PIPELINE = [
     "ovos-padatious-pipeline-plugin-high",
     "ovos-padacioso-pipeline-plugin-high",
@@ -95,6 +74,10 @@ NEGATIVE_UTTERANCES = [
     ("ask wordnet about word", "ovos-skill-wordnet.openvoiceos"),
     ("set an alarm", "ovos-skill-alerts.openvoiceos"),
     ("can you spell word", "ovos-skill-spelling.openvoiceos"),
+    # lexical near-miss on this skill's own "set [my|the] (wallpaper|wall
+    # paper) to {query}" template ("background" vs "wallpaper"/"wall
+    # paper"); not sourced from another skill's corpus.
+    ("set the background to blue", "ovos-skill-wallpapers.openvoiceos"),
 ]
 
 

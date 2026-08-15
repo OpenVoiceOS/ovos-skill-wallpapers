@@ -1,72 +1,147 @@
-"""End-to-end intent routing tests for the en-US locale.
+"""E2E intent-routing tests for ovos-skill-wallpapers (en-US).
 
-Each canonical utterance is fired through a real MiniCroft and asserted to
-route to the expected Padatious intent. The handlers fetch wallpapers over the
-network, so the capture ends at the intent match and asserts routing only.
+The wallpaper lookups hit a remote image API; they are stubbed so the suite is
+deterministic and offline, exercising only intent routing.
 """
-import unittest
+from unittest import TestCase
+from unittest.mock import patch
 
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
-from ovoscope import CaptureSession, get_minicroft
+from ovoscope import End2EndTest, get_minicroft
 
 SKILL_ID = "skill-ovos-wallpapers.openvoiceos"
 LANG = "en-US"
 
+FAKE_WALLPAPERS = ["/tmp/fake_wallpaper_0.jpg", "/tmp/fake_wallpaper_1.jpg"]
 
-class TestWallpapersIntentsEnUS(unittest.TestCase):
+# Matches the real default ovos-core pipeline order (padatious/padacioso
+# high BEFORE adapt-high) -- see test_golden_utterances.py for why a
+# padatious-high-only pipeline hides collisions that only show up once the
+# medium-confidence stages get a chance to claim an utterance.
+_PIPELINE = [
+    "ovos-padatious-pipeline-plugin-high",
+    "ovos-padacioso-pipeline-plugin-high",
+    "ovos-adapt-pipeline-plugin-high",
+    "ovos-padacioso-pipeline-plugin-medium",
+    "ovos-adapt-pipeline-plugin-medium",
+]
+
+
+class _IntentRoutingMixin:
+    """Shared MiniCroft setup for padacioso intent-routing assertions."""
+
     @classmethod
     def setUpClass(cls):
+        cls._patch = patch(
+            "ovos_skill_wallpapers.get_wallpapers",
+            return_value=list(FAKE_WALLPAPERS),
+        )
+        cls._patch.start()
         cls.minicroft = get_minicroft([SKILL_ID])
 
     @classmethod
     def tearDownClass(cls):
-        cls.minicroft.stop()
+        if getattr(cls, "minicroft", None):
+            cls.minicroft.stop()
+        cls._patch.stop()
 
-    def _assert_intent(self, text, intent_file):
+    def _assert_routes(self, utterance: str, intent_file: str):
         # dispatched intent messages drop the ".intent" file suffix (OVOS-INTENT-2
         # naming) -- pinning the suffixed form here made the eof_msgs cutoff never
         # fire (so every case ran the full 30s timeout) and the final assertion
         # always fail; see the golden-utterance suite's tolerant matcher for the
         # same fact documented elsewhere in this repo.
         intent_base = intent_file[:-len(".intent")] if intent_file.endswith(".intent") else intent_file
-        intent_msg = f"{SKILL_ID}:{intent_base}"
-        session = Session("test-session")
+        intent_msg_type = f"{SKILL_ID}:{intent_base}"
+        session = Session(f"e2e-en_us-{intent_file}-{hash(utterance)}")
         session.lang = LANG
-        session.pipeline = [
-            "ovos-padatious-pipeline-plugin-high",
-            "ovos-padatious-pipeline-plugin-medium",
-        ]
-        utterance = Message(
+        session.pipeline = list(_PIPELINE)
+        # blacklisted_intents defaults to None on a fresh Session, which
+        # crashes the padacioso pipeline (NoneType membership test) - force
+        # an empty list.
+        session.blacklisted_intents = []
+        message = Message(
             "recognizer_loop:utterance",
-            {"utterances": [text], "lang": LANG},
-            {"session": session.serialize(), "source": "A", "destination": "B"},
+            {"utterances": [utterance], "lang": LANG},
+            {"session": session.serialize()},
         )
-        capture = CaptureSession(self.minicroft, eof_msgs=[intent_msg])
-        capture.capture(utterance, timeout=30)
-        types = [m.msg_type for m in capture.finish()]
-        self.assertIn(intent_msg, types)
+        test = End2EndTest(
+            minicroft=self.minicroft,
+            skill_ids=[SKILL_ID],
+            eof_msgs=["ovos.utterance.handled"],
+            flip_points=["recognizer_loop:utterance"],
+            source_message=message,
+            activation_points=[intent_msg_type],
+            test_msg_context=False,
+            test_message_number=False,
+            ignore_messages=[
+                "speak",
+                "ovos.utterance.speak",
+                "recognizer_loop:audio_output_start",
+                "recognizer_loop:audio_output_end",
+                "mycroft.audio.play_sound",
+                "add_context",
+                "remove_context",
+                "enclosure.mouth.think",
+                "enclosure.mouth.reset",
+                "enclosure.mouth.viseme_list",
+                "gui.clear.namespace",
+                "gui.page.show",
+                "gui.value.set",
+                "mycroft.gui.screen.close",
+                # intent-service bookkeeping messages that bracket the
+                # dispatch (match + handler start/complete); the routing
+                # assertion below checks the {SKILL_ID}:{intent} message
+                # itself, not these
+                "ovos.intent.matched",
+                "ovos.intent.handler.start",
+                "ovos.intent.handler.complete",
+                # wallpaper delivery side effects fired from inside the handler;
+                # not relevant to intent-routing assertions
+                "ovos.wallpaper.manager.register.provider",
+                "ovos.wallpaper.manager.set.wallpaper",
+                "ovos.wallpaper.manager.collect.collection.response",
+                "homescreen.wallpaper.set",
+            ],
+            expected_messages=[
+                message,
+                Message(f"{SKILL_ID}.activate", {}, {"skill_id": SKILL_ID}),
+                Message(intent_msg_type, {}, {"skill_id": SKILL_ID}),
+                Message("mycroft.skill.handler.start", {}, {"skill_id": SKILL_ID}),
+                Message("mycroft.skill.handler.complete", {}, {"skill_id": SKILL_ID}),
+                Message("ovos.utterance.handled", {}, {"skill_id": SKILL_ID}),
+            ],
+        )
+        test.execute(timeout=30)
 
-    def test_change_current_wallpaper(self):
-        self._assert_intent("change current wallpaper", "wallpaper.random.intent")
 
-    def test_new_wallpaper(self):
-        self._assert_intent("new wallpaper", "wallpaper.random.intent")
+class TestWallpaperRandom(_IntentRoutingMixin, TestCase):
+    """Padatious intent: wallpaper_random.intent"""
 
-    def test_show_me_a_picture(self):
-        self._assert_intent("show me a picture", "picture.random.intent")
+    def test_change_the_wallpaper(self):
+        self._assert_routes(r"change the wallpaper", r"wallpaper_random.intent")
 
-    def test_display_another_photo(self):
-        self._assert_intent("display another photo", "picture.random.intent")
+    def test_give_me_a_new_wallpaper(self):
+        self._assert_routes(r"give me a new wallpaper", r"wallpaper_random.intent")
 
-    def test_change_wallpaper_to_nature(self):
-        self._assert_intent("change wallpaper to nature", "wallpaper.about.intent")
 
-    def test_new_wall_paper_about_dogs(self):
-        self._assert_intent("new wall paper about dogs", "wallpaper.about.intent")
+class TestPictureRandom(_IntentRoutingMixin, TestCase):
+    """Padatious intent: picture_random.intent"""
 
-    def test_show_me_a_picture_with_dogs(self):
-        self._assert_intent("show me a picture with dogs", "picture.about.intent")
+    def test_show_me_a_random_picture(self):
+        self._assert_routes(r"show me a random picture", r"picture_random.intent")
 
-    def test_display_another_image_about_nature(self):
-        self._assert_intent("display another image about nature", "picture.about.intent")
+
+class TestWallpaperAbout(_IntentRoutingMixin, TestCase):
+    """Padatious intent: wallpaper_about.intent"""
+
+    def test_set_the_wallpaper_to_space(self):
+        self._assert_routes(r"set the wallpaper to space", r"wallpaper_about.intent")
+
+
+class TestPictureAbout(_IntentRoutingMixin, TestCase):
+    """Padatious intent: picture_about.intent"""
+
+    def test_show_me_a_picture_of_cats(self):
+        self._assert_routes(r"show me a picture of cats", r"picture_about.intent")
