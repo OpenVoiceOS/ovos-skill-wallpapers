@@ -6,7 +6,7 @@ shared ovoscope golden-utterance dataset, keyed by
 (module-scoped fixture) is booted for the whole suite; every row is its own
 parametrized test item.
 
-``NextPictureIntent``, ``PrevPictureIntent`` and ``MakeWallpaperIntent`` are
+``next_picture.intent``, ``previous_picture.intent`` and ``make_wallpaper.intent`` are
 adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). The
 context is session-scoped: ``self.set_context("SlideShow")`` is only set by
 the user-facing handlers that actually start a slideshow or show a
@@ -24,7 +24,7 @@ Pipeline order note: this suite pins the real ovos-core default pipeline
 order (padatious/padacioso-high before adapt-high, confirmed via
 ``Configuration()["intents"]["pipeline"]``). An adapt-high-before-padatious
 ordering produces a false collision on "change the wall paper" (claimed by
-``MakeWallpaperIntent`` via loose ``set``/``wallpapers`` keyword overlap
+``make_wallpaper.intent`` via loose ``set``/``wallpapers`` keyword overlap
 instead of the intended ``wallpaper.random.intent``); pinning the real
 default order avoids that test-construction artifact.
 """
@@ -84,7 +84,7 @@ NEGATIVE_UTTERANCES = [
 def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
     """Tolerant matcher, same shape as the sibling repos' suites: compare
     the ``:``-suffix basename, extension-stripped and case/punct-insensitive
-    (adapt intents like ``NextPictureIntent`` carry no ``.intent`` suffix to
+    (adapt intents like ``next_picture.intent`` carry no ``.intent`` suffix to
     begin with; padatious/padacioso ones do)."""
     prefix = f"{skill_id}:"
     if not msg_type.startswith(prefix):
@@ -99,7 +99,7 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
 # All xfails are strict=True: a row that starts passing must fail the build.
 #
 # "after"/"before"/"wall paper change" require the "SlideShow" adapt context
-# (see NextPictureIntent/PrevPictureIntent/MakeWallpaperIntent in
+# (see next_picture.intent/previous_picture.intent/make_wallpaper.intent in
 # ``__init__.py``). Until the boot-time context leak was fixed, the context
 # was set globally on skill load and these single-turn rows (no priming
 # utterance) matched unconditionally -- a false green documented in the old
