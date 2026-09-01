@@ -80,34 +80,56 @@ class WallpapersSkill(OVOSSkill):
                               {"provider_name": self.skill_id, "url": image}))
         self.bus.emit(Message("homescreen.wallpaper.set", {"url": image}))
 
+    def _resolve_query(self, query: Optional[str]) -> Optional[str]:
+        """padatious enforces ``locale/en-US/query.blacklist`` at match time
+        (OVOS-INTENT-2 §4.3), but padacioso has no slot-blacklist support, so
+        a deictic filler ("that", "this", "it", ...) can still bind to
+        {query} when the utterance is routed by a different pipeline stage.
+        Re-check the bound value here so the blacklist holds regardless of
+        which stage claimed the intent."""
+        if not query:
+            return None
+        blacklist = {p.lower() for p in self.resources.load_blacklist_file("query")}
+        if query.strip().lower() in blacklist:
+            return None
+        return query
+
     # intents
-    @intent_handler("wallpaper.random.intent")
+    @intent_handler("wallpaper_random.intent")
     def handle_random_wallpaper(self, message):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
         self.set_context("SlideShow")
         self.change_wallpaper(image)
-        self.speak_dialog("wallpaper.changed")
+        self.speak_dialog("wallpaper_changed")
 
-    @intent_handler("picture.random.intent")
+    @intent_handler("picture_random.intent")
     def handle_random_picture(self, message=None):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
         self.set_context("SlideShow")
         self.gui.show_image(image)
 
-    @intent_handler("wallpaper.about.intent")
+    @intent_handler("wallpaper_about.intent")
     def handle_wallpaper_about(self, message):
-        query = message.data["query"]
+        query = self._resolve_query(message.data.get("query"))
+        if not query:
+            # deictic ask ("set the wallpaper to that") with no bound slot,
+            # treat it the same as a random wallpaper request
+            return self.handle_random_wallpaper(message)
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
         self.set_context("SlideShow")
         self.change_wallpaper(image)
-        self.speak_dialog("wallpaper.changed")
+        self.speak_dialog("wallpaper_changed")
 
-    @intent_handler("picture.about.intent")
+    @intent_handler("picture_about.intent")
     def handle_picture_about(self, message=None):
-        query = message.data["query"]
+        query = self._resolve_query(message.data.get("query"))
+        if not query:
+            # deictic ask ("show me that picture") with no bound slot,
+            # treat it the same as a random picture request
+            return self.handle_random_picture(message)
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
         self.set_context("SlideShow")
@@ -121,7 +143,7 @@ class WallpapersSkill(OVOSSkill):
         self.pic_idx += 1
         if self.pic_idx >= total:
             self.pic_idx = total - 1
-            self.speak_dialog("no.more.pictures")
+            self.speak_dialog("no_more_pictures")
         else:
             self.acknowledge()
             image = self.picture_list[self.pic_idx]
@@ -134,7 +156,7 @@ class WallpapersSkill(OVOSSkill):
         self.pic_idx -= 1
         if self.pic_idx < 0:
             self.pic_idx = 0
-            self.speak_dialog("no.more.pictures")
+            self.speak_dialog("no_more_pictures")
         else:
             self.acknowledge()
             image = self.picture_list[self.pic_idx]
@@ -146,5 +168,5 @@ class WallpapersSkill(OVOSSkill):
     def handle_set_wallpaper(self, message=None):
         image = self.picture_list[self.pic_idx]
         self.change_wallpaper(image)
-        self.speak_dialog("wallpaper.changed")
+        self.speak_dialog("wallpaper_changed")
         self.gui.release()  # let home screen show the wallpaper
