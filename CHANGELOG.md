@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a1) (2026-09-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.16a1...2.0.0a1)
+
+**Breaking changes:**
+
+- fix!: INTENT-2 locale base names, deictic {query} guard, packaging modernization [\#73](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/73) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [1.0.16a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.16a1) (2026-08-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.15a1...1.0.16a1)
