@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a2) (2026-09-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a1...2.0.0a2)
+
+**Merged pull requests:**
+
+- refactor: migrate context-gated adapt intents to intent files [\#82](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/82) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [2.0.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a1) (2026-09-01)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.16a1...2.0.0a1)
