@@ -15,7 +15,7 @@ keywords = ["ovos", "skill", "plugin"]
 dependencies = [
     "requests",
     "ovos-utils>=0.0.38,<1.0.0",
-    "ovos-workshop>=9.3.13a1,<10.0.0"
+    "ovos-workshop>=9.6.0a1,<10.0.0"
 ]
 
 [project.optional-dependencies]

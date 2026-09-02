@@ -7,7 +7,6 @@ from ovos_utils.log import LOG
 from ovos_utils.xdg_utils import xdg_data_home
 
 from ovos_workshop.decorators import intent_handler
-from ovos_workshop.intents import IntentBuilder
 from ovos_workshop.skills import OVOSSkill
 
 
@@ -135,9 +134,7 @@ class WallpapersSkill(OVOSSkill):
         self.set_context("SlideShow")
         self.gui.show_image(image)
 
-    @intent_handler(IntentBuilder("NextPictureIntent")
-                    .require("next").optionally("picture")
-                    .require("SlideShow"))
+    @intent_handler("next_picture.intent", requires_context=["SlideShow"])
     def handle_next(self, message=None):
         total = len(self.picture_list)
         self.pic_idx += 1
@@ -149,9 +146,7 @@ class WallpapersSkill(OVOSSkill):
             image = self.picture_list[self.pic_idx]
             self.gui.show_image(image)
 
-    @intent_handler(IntentBuilder("PrevPictureIntent")
-                    .require("previous").optionally("picture")
-                    .require("SlideShow"))
+    @intent_handler("previous_picture.intent", requires_context=["SlideShow"])
     def handle_prev(self, message=None):
         self.pic_idx -= 1
         if self.pic_idx < 0:
@@ -162,9 +157,7 @@ class WallpapersSkill(OVOSSkill):
             image = self.picture_list[self.pic_idx]
             self.gui.show_image(image)
 
-    @intent_handler(IntentBuilder("MakeWallpaperIntent")
-                    .require("set").require("wallpapers").optionally("picture")
-                    .require("SlideShow"))
+    @intent_handler("make_wallpaper.intent", requires_context=["SlideShow"])
     def handle_set_wallpaper(self, message=None):
         image = self.picture_list[self.pic_idx]
         self.change_wallpaper(image)
