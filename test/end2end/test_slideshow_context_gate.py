@@ -19,17 +19,31 @@ gated intents:
   should NOT match (this is the direction that was a permanent false
   positive before the boot-time context leak documented below was fixed).
 
-``_fire()`` looks the live session back up in ``SessionManager.sessions``
-after a turn completes instead of returning the caller's stale local
-``Session`` snapshot: the context is mutated server-side on the
-``SessionManager``-registry singleton for that ``session_id``, and handing
-back the frozen pre-turn object would let the server-side session fold
-(full replace, last-writer-wins) clobber the freshly primed context on the
-next turn.
+``_fire()`` captures the session off the orchestrator's ``ovos.utterance.handled``
+end-marker (OVOS-PIPELINE-1 §9.5) instead of reading the orchestrator's
+private ``SessionManager.sessions`` registry: that registry is
+default-session-only per spec and never holds a named conversation session's
+real state. As of the SESSION-2 §2.6 completion sync (ovos-core 3.2.5a1),
+the handler's session write is folded into the round's working session and
+re-stamped on that end-marker's ``context["session"]`` before it fires, so
+``ovos.utterance.handled`` always reflects the context the handler set,
+regardless of whether the handler speaks before or after writing it
+(``handle_random_picture`` speaks THEN calls ``self.set_context(...)``).
+The captured session is re-declared on the follow-up turn's utterance,
+exactly as a real client would.
+
+Version discrimination for the SESSION-2 §2.6 completion sync itself is
+proven by ovos-core#921's own 4-process bus rig, not by this module: ovoscope
+delivers the same in-process ``Message`` object to every bus subscriber, so a
+skill's ``SessionManager.get(message)`` binds straight to the orchestrator's
+own working-session object and the write lands without the fold. A real bus
+deserializes each subscriber's own copy, which is what the fold exists for.
+Until ovoscope's in-process delivery gets its own serialization fix, running
+this module against ovos-core 3.2.4a2 and 3.2.5a1 looks identical here.
 """
 import pytest
 from ovos_bus_client.message import Message
-from ovos_bus_client.session import Session, SessionManager
+from ovos_bus_client.session import Session
 from ovoscope import CaptureSession, get_minicroft
 
 SKILL_ID = "skill-ovos-wallpapers.openvoiceos"
@@ -96,13 +110,17 @@ def _fire(mc, session, text):
     )
     capture = CaptureSession(
         mc,
-        eof_msgs=["mycroft.skill.handler.start", "ovos.intent.unmatched"],
+        eof_msgs=["ovos.utterance.handled", "ovos.intent.unmatched"],
         ignore_messages=_IGNORE,
     )
     capture.capture(utterance, timeout=30)
-    types = [m.msg_type for m in capture.finish()]
-    live_session = SessionManager.sessions.get(session.session_id, session)
-    return types, live_session
+    messages = capture.finish()
+    types = [m.msg_type for m in messages]
+    carried_session = session
+    for m in messages:
+        if m.msg_type == "ovos.utterance.handled" and m.context.get("session"):
+            carried_session = Session.deserialize(m.context["session"])
+    return types, carried_session
 
 
 @pytest.mark.timeout(90)
