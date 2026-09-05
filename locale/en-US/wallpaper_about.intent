@@ -3,3 +3,5 @@
 give me a (wallpaper|wall paper) (about|for|with|of|showing) {query}
 i want a (wallpaper|wall paper) (about|for|with|of|showing) {query}
 set [my|the] (wallpaper|wall paper) to {query}
+(give|put) me [a|an] {query} (wallpaper|wall paper) [on my screen]
+i want [a|an] {query} (wallpaper|wall paper)
