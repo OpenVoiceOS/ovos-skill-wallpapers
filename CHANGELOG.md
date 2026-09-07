@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0a4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a4) (2026-09-07)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a3...2.0.0a4)
+
+**Merged pull requests:**
+
+- Update dependency pytest to v9 [\#83](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/83) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [2.0.0a3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a3) (2026-09-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a2...2.0.0a3)
