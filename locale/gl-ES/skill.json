@@ -1,0 +1,38 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [
+
+    ],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [
+
+    ],
+    "audio": [
+
+    ],
+    "media": [
+
+    ],
+    "gui": [
+
+    ]
+  },
+  "name": "Cambiador de fondos de pantalla",
+  "description": "Imaxes de subreddits seleccionados.",
+  "examples": [
+    "novo fondo de pantalla",
+    "cambiar o fondo de pantalla á natureza",
+    "móstrame unha imaxe",
+    "móstrame unha foto de cans",
+    "converte esa imaxe no meu fondo de pantalla"
+  ],
+  "tags": [
+    "fondos de pantalla",
+    "imaxes",
+    "(fotos|fotografías)"
+  ]
+}

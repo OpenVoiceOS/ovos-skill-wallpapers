@@ -1,0 +1,38 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [
+
+    ],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [
+
+    ],
+    "audio": [
+
+    ],
+    "media": [
+
+    ],
+    "gui": [
+
+    ]
+  },
+  "name": "Tapetskifter",
+  "description": "Billeder fra udvalgte subreddits.",
+  "examples": [
+    "nyt tapet",
+    "skifte tapet til natur",
+    "vis mig et billede",
+    "vis mig et billede med hunde",
+    "gør det til mit tapet"
+  ],
+  "tags": [
+    "tapeter",
+    "billeder",
+    "fotos"
+  ]
+}
