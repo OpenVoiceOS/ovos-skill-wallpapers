@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.1.0a1) (2026-09-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a4...2.1.0a1)
+
+**Merged pull requests:**
+
+- feat: query.entity locale parity for ca-ES, de-DE, es-ES, eu-ES, fr-FR, gl-ES [\#92](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/92) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+- translate\(da-DK\): fix broken translations, add missing query files [\#91](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/91) ([andlo](https://github.com/andlo))
+
 ## [2.0.0a4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.0.0a4) (2026-09-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a3...2.0.0a4)
