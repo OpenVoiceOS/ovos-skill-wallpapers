@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.2.0a1) (2026-09-10)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.1.0a1...2.2.0a1)
+
+**Merged pull requests:**
+
+- feat: pt-PT it-IT kab pt-BR nl-NL sv-SE locale parity [\#88](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/88) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [2.1.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.1.0a1) (2026-09-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.0.0a4...2.1.0a1)
