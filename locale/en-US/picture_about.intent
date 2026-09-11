@@ -1,2 +1,3 @@
-(show|display|find) me a [random|new|different|other|another] (picture|photo|image) (about|for|with|of|showing) {query}
-(show|display|find) [a|another] [random|new|different] (picture|photo|image) (about|for|with|of|showing) {query}
+(show|display|find) me a [random|new|different|other|another] (picture|photo|image) (about|for|with|of|showing|related to) {query}
+(show|display|find) [a|another] [random|new|different] (picture|photo|image) (about|for|with|of|showing|related to) {query}
+(show|display|find|give|get|pull up|i want to see|can i see|could i see) [me|us] [a|an|another] {query} (picture|photo|image|pictures|photos|images)
