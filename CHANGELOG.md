@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.2.0a2) (2026-09-13)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.2.0a1...2.2.0a2)
+
+**Merged pull requests:**
+
+- locale: eu-ES searching\_random.dialog for ovos-skill-wallpapers [\#95](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/95) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.2.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.2.0a1) (2026-09-10)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.1.0a1...2.2.0a1)
