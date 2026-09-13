@@ -1,4 +1,0 @@
-(show|display) (random|new|other|another) (picture|photo|image) (about|for|with) {query}
-(show|display) me a (picture|photo|image) (about|for|with) {query}
-(show|display) me a (random|new|other|another) (picture|photo|image) (about|for|with) {query}
-(show|display|random|new) (picture|photo|image) (about|for|with) {query}

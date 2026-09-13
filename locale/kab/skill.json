@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Abeddel n Ugdil",
+  "description": "Tugniwin seg subreddit yettwafernen.",
+  "examples": [
+    "agdil ajdid",
+    "beddel agdil ɣer tabiɛt",
+    "sken-iyi-d tugna",
+    "sken-iyi-d tugna n iḍan",
+    "sers-t d agilal-iw"
+  ],
+  "tags": [
+    "igdilan",
+    "tugniwin",
+    "tiwlafin"
+  ]
+}
