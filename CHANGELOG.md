@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.2.1a1) (2026-09-16)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.2.0a2...2.2.1a1)
+
+**Merged pull requests:**
+
+- fix: widen picture\_about/wallpaper\_about templates for adjective-order phrasing [\#87](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/87) ([JarbasAl](https://github.com/JarbasAl))
+
 ## [2.2.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.2.0a2) (2026-09-13)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.2.0a1...2.2.0a2)
