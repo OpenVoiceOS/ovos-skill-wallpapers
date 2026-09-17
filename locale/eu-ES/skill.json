@@ -1,0 +1,22 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": ["ovos-PHAL-plugin-wallpaper-manager"],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Horma-paperen aldatzailea",
+  "description": "Hautatutako subredditetako irudiak.",
+  "examples": [
+    "horma-paper berria",
+    "aldatu horma-papera naturara",
+    "erakutsi argazki bat",
+    "erakutsi txakurrekin argazki bat",
+    "jarri hori nire horma-paper gisa"
+  ],
+  "tags": ["horma-paperak", "irudiak", "argazkiak"]
+}
