@@ -1,6 +1,6 @@
 """Golden-utterance end-to-end coverage for ovos-skill-wallpapers (en-US).
 
-The golden corpus (``golden_utterances.jsonl``) is a vendored slice of the
+The golden corpus (``golden_utterances_en-US.jsonl``) is a vendored slice of the
 shared ovoscope golden-utterance dataset, keyed by
 ``skill_id == "ovos-skill-wallpapers.openvoiceos"``. One shared ``MiniCroft``
 (module-scoped fixture) is booted for the whole suite; every row is its own
@@ -61,7 +61,7 @@ _IGNORE = [
     "enclosure.mouth.events.activate",
 ]
 
-GOLDEN_PATH = Path(__file__).parent / "golden_utterances.jsonl"
+GOLDEN_PATH = Path(__file__).parent / "golden_utterances_en-US.jsonl"
 
 # utterances lifted verbatim from OTHER skills' golden-utterance slices in
 # the shared ovoscope corpus, picked for lexical overlap with wallpapers'
