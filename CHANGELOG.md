@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.0a2) (2026-09-17)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.0a1...2.3.0a2)
+
+**Merged pull requests:**
+
+- test: golden utterances for every locale [\#102](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/102) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.3.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.0a1) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.2.1a1...2.3.0a1)
