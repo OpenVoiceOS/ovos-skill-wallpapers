@@ -39,7 +39,11 @@ PADACIOSO = ["ovos-padacioso-pipeline-plugin-high", "ovos-padacioso-pipeline-plu
 #: ``wallpaper_about.intent`` expands to 24,596 lines against fr-FR's 43,
 #: and padacioso does not finish training it inside a test timeout on a
 #: loaded host. fr-FR is the locale that proves it.
+#: sv-SE is on dev today, 29 expansions, and proves the fix in CI before
+#: fr-FR's blacklist lands with #98.
 CASES = [
+    ("sv-SE", "byt min bakgrundsbild om den här", "den här", "byt min bakgrundsbild om berg"),
+    ("sv-SE", "byt min bakgrundsbild om den där", "den där", "byt min bakgrundsbild om berg"),
     ("fr-FR", "change le fond d'écran en ça", "ça", "change le fond d'écran en montagnes"),
     ("fr-FR", "change le fond d'écran en celle-là", "celle-là", "change le fond d'écran en montagnes"),
     ("fr-FR", "change le fond d'écran en différente", "différente", "change le fond d'écran en montagnes"),
