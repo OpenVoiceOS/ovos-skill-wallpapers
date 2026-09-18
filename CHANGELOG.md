@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.1a1) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.0a2...2.3.1a1)
+
+**Merged pull requests:**
+
+- fix: the golden rows name the intents this skill registers [\#104](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/104) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.3.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.0a2) (2026-09-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.0a1...2.3.0a2)
