@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.2a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.2a1) (2026-09-18)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.1a1...2.3.2a1)
+
+**Merged pull requests:**
+
+- fix\(locale\): add the missing gender counterpart to query.blacklist in five locales [\#105](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/105) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.3.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.1a1) (2026-09-18)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.0a2...2.3.1a1)
