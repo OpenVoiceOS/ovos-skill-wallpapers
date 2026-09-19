@@ -68,9 +68,16 @@ class WallpapersSkill(OVOSSkill):
                                      "url": url}))
 
     # skill internals
-    def fetch_wallpapers(self, query=None) -> str:
+    def fetch_wallpapers(self, query=None) -> Optional[str]:
+        """The first wallpaper the backend returns, or None when it returns
+        none. ``get_wallpapers`` swallows the request error and returns an
+        empty list (wallhaven answered 521 for a day), and indexing it here
+        raised before any handler reached ``set_context``, so every intent
+        gated on SlideShow stopped matching for the session."""
         self.picture_list = get_wallpapers(query)
         self.pic_idx = 0
+        if not self.picture_list:
+            return None
         return self.picture_list[self.pic_idx]
 
     def change_wallpaper(self, image):
@@ -98,6 +105,8 @@ class WallpapersSkill(OVOSSkill):
     def handle_random_wallpaper(self, message):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
+        if image is None:
+            return self.speak_dialog("no_more_pictures")
         self.set_context("SlideShow")
         self.change_wallpaper(image)
         self.speak_dialog("wallpaper_changed")
@@ -106,6 +115,8 @@ class WallpapersSkill(OVOSSkill):
     def handle_random_picture(self, message=None):
         self.speak_dialog("searching_random")
         image = self.fetch_wallpapers()
+        if image is None:
+            return self.speak_dialog("no_more_pictures")
         self.set_context("SlideShow")
         self.gui.show_image(image)
 
@@ -118,6 +129,8 @@ class WallpapersSkill(OVOSSkill):
             return self.handle_random_wallpaper(message)
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
+        if image is None:
+            return self.speak_dialog("no_more_pictures")
         self.set_context("SlideShow")
         self.change_wallpaper(image)
         self.speak_dialog("wallpaper_changed")
@@ -131,6 +144,8 @@ class WallpapersSkill(OVOSSkill):
             return self.handle_random_picture(message)
         self.speak_dialog("searching", {"query": query})
         image = self.fetch_wallpapers(query)
+        if image is None:
+            return self.speak_dialog("no_more_pictures")
         self.set_context("SlideShow")
         self.gui.show_image(image)
 
