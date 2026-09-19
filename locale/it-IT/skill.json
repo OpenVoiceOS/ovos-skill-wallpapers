@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Cambia Sfondo",
+  "description": "Immagini da subreddit selezionati.",
+  "examples": [
+    "nuovo sfondo",
+    "cambia lo sfondo con la natura",
+    "mostrami un'immagine",
+    "mostrami un'immagine con i cani",
+    "imposta quella come sfondo"
+  ],
+  "tags": [
+    "sfondi",
+    "immagini",
+    "foto"
+  ]
+}
