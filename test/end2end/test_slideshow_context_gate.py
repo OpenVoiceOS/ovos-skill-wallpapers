@@ -41,6 +41,8 @@ deserializes each subscriber's own copy, which is what the fold exists for.
 Until ovoscope's in-process delivery gets its own serialization fix, running
 this module against ovos-core 3.2.4a2 and 3.2.5a1 looks identical here.
 """
+from unittest.mock import patch
+
 import pytest
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
@@ -87,11 +89,20 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
     return observed_base == expected_base
 
 
+#: The priming intent calls ``fetch_wallpapers``, which reaches wallhaven.cc
+#: unless the backend is stubbed. On 2026-09-19 wallhaven answered 521 for
+#: a day, the fetch came back empty, and every case here failed for a
+#: reason that had nothing to do with the gate. The stub keeps this test
+#: about the gate.
+FAKE_WALLPAPERS = ["/tmp/fake_wallpaper_0.jpg", "/tmp/fake_wallpaper_1.jpg"]
+
+
 @pytest.fixture(scope="module")
 def minicroft():
-    mc = get_minicroft([SKILL_ID])
-    yield mc
-    mc.stop()
+    with patch("ovos_skill_wallpapers.get_wallpapers", return_value=list(FAKE_WALLPAPERS)):
+        mc = get_minicroft([SKILL_ID])
+        yield mc
+        mc.stop()
 
 
 def _session(session_id):
