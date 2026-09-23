@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.0a1) (2026-09-23)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.4a1...2.4.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): fill fr-FR gap against en-US [\#98](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/98) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.3.4a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.4a1) (2026-09-23)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.3a1...2.3.4a1)
@@ -527,17 +535,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.2a1...0.3.3a1)
 
-**Merged pull requests:**
-
-- fix:update\_requirements [\#7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/7) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.3.2a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.2a1) (2024-10-07)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.1...0.3.2a1)
-
-**Merged pull requests:**
-
-- Release 0.3.2a1 [\#6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/6) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.1) (2024-09-11)
 
