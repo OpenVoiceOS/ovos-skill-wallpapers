@@ -3,6 +3,7 @@ from typing import Optional
 
 import requests
 from ovos_bus_client.message import Message
+from ovos_spec_tools.resources import normalize_for_match
 from ovos_utils.log import LOG
 from ovos_utils.xdg_utils import xdg_data_home
 
@@ -92,11 +93,19 @@ class WallpapersSkill(OVOSSkill):
         a deictic filler ("that", "this", "it", ...) can still bind to
         {query} when the utterance is routed by a different pipeline stage.
         Re-check the bound value here so the blacklist holds regardless of
-        which stage claimed the intent."""
+        which stage claimed the intent.
+
+        Both sides are folded with ``normalize_for_match``, the fold the
+        pipeline applies to the bound value (lowercase, diacritics and
+        ASCII punctuation stripped). Comparing a raw blacklist line against
+        the folded value let every accented or hyphenated line miss:
+        ``celle-là`` arrives as ``cellela`` and ``ça`` as ``ca``, so only
+        plain-ASCII lines such as ``cela`` and ``it`` were ever caught."""
         if not query:
             return None
-        blacklist = {p.lower() for p in self.resources.load_blacklist_file("query")}
-        if query.strip().lower() in blacklist:
+        blacklist = {normalize_for_match(p)
+                     for p in self.resources.load_blacklist_file("query")}
+        if normalize_for_match(query) in blacklist:
             return None
         return query
 
