@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.3.4a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.4a1) (2026-09-23)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.3a1...2.3.4a1)
+
+**Merged pull requests:**
+
+- fix: fold both sides of the handler-side query blacklist check [\#108](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/108) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.3.3a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.3.3a1) (2026-09-19)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.2a1...2.3.3a1)
@@ -310,19 +318,19 @@
 
 ## [1.0.7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a1...1.0.7)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a2...1.0.7)
 
 **Merged pull requests:**
 
 - Release 1.0.7a2 [\#36](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/36) ([github-actions[bot]](https://github.com/apps/github-actions))
 
-## [1.0.7a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a1) (2024-12-02)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a2...1.0.7a1)
-
 ## [1.0.7a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a2) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.6...1.0.7a2)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a1...1.0.7a2)
+
+## [1.0.7a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a1) (2024-12-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.6...1.0.7a1)
 
 **Merged pull requests:**
 
@@ -530,15 +538,10 @@
 **Merged pull requests:**
 
 - Release 0.3.2a1 [\#6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/6) ([github-actions[bot]](https://github.com/apps/github-actions))
-- Add Catalan translation [\#5](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/5) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
 
 ## [0.3.1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.1) (2024-09-11)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.1a1...0.3.1)
-
-**Merged pull requests:**
-
-- Release 0.3.1a1 [\#4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/4) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.1a1) (2024-09-11)
 
