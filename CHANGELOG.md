@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.2a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.2a1) (2026-09-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.1a1...2.4.2a1)
+
+**Merged pull requests:**
+
+- fix\(eu-ES\): split bare-pipe vocabulary lines [\#114](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/114) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.4.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.1a1) (2026-09-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.0a1...2.4.1a1)
@@ -511,17 +519,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.4...0.3.5a1)
 
-**Merged pull requests:**
-
-- da-dk/translate [\#11](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/11) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [0.3.4](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.4) (2024-10-31)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.4a1...0.3.4)
-
-**Merged pull requests:**
-
-- Release 0.3.4a1 [\#10](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/10) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.4a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.4a1) (2024-10-31)
 
