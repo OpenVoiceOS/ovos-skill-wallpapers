@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.1a1) (2026-09-24)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.0a1...2.4.1a1)
+
+**Merged pull requests:**
+
+- fix: locale resource names per OVOS-INTENT-2 [\#99](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/99) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.4.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.0a1) (2026-09-23)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.3.4a1...2.4.0a1)
@@ -519,17 +527,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.3...0.3.4a1)
 
-**Merged pull requests:**
-
-- fix:allow workshop 3.0.0 [\#9](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/9) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.3.3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.3) (2024-10-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.3a1...0.3.3)
-
-**Merged pull requests:**
-
-- Release 0.3.3a1 [\#8](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/8) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.3a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.3a1) (2024-10-15)
 
