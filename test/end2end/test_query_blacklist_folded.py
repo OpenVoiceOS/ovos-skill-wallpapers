@@ -35,10 +35,10 @@ PADACIOSO = ["ovos-padacioso-pipeline-plugin-high", "ovos-padacioso-pipeline-plu
 #:  the blacklist line it binds, a real-topic utterance for the control).
 #: Every deictic here carries an accent or a hyphen, the two things
 #: normalize_for_match removes.
-#: ca-ES carries the same defect (``això``, ``allò``) but its
-#: ``wallpaper_about.intent`` expands to 24,596 lines against fr-FR's 43,
-#: and padacioso does not finish training it inside a test timeout on a
-#: loaded host. fr-FR is the locale that proves it.
+#: ca-ES carries the same defect (``això``, ``allò``). Its
+#: ``wallpaper_about.intent`` used to expand to 17,010 lines and padacioso
+#: never finished training it inside a test timeout on a loaded host;
+#: rewritten as plain lines (T-3486) it expands to 6, and boots in time.
 #: sv-SE is on dev today, 29 expansions, and proves the fix in CI before
 #: fr-FR's blacklist lands with #98.
 CASES = [
@@ -47,6 +47,8 @@ CASES = [
     ("fr-FR", "change le fond d'écran en ça", "ça", "change le fond d'écran en montagnes"),
     ("fr-FR", "change le fond d'écran en celle-là", "celle-là", "change le fond d'écran en montagnes"),
     ("fr-FR", "change le fond d'écran en différente", "différente", "change le fond d'écran en montagnes"),
+    ("ca-ES", "canvia el fons de pantalla per això", "això", "canvia el fons de pantalla per muntanyes"),
+    ("ca-ES", "canvia el fons de pantalla per allò", "allò", "canvia el fons de pantalla per muntanyes"),
 ]
 
 
