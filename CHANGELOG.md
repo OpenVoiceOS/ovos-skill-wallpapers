@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.6.0a1) (2026-09-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.5.0a1...2.6.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): gl-ES wallpaper\_random gets lines the gold does not repeat [\#120](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/120) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.5.0a1) (2026-09-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.3a1...2.5.0a1)
@@ -494,17 +502,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.7...1.0.0a1)
 
-**Breaking changes:**
-
-- feat!: move to new wallpaper api [\#17](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/17) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.3.7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.7) (2024-11-15)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.7a1...0.3.7)
-
-**Merged pull requests:**
-
-- Release 0.3.7a1 [\#16](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/16) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.7a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.7a1) (2024-11-15)
 
