@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.5.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.5.0a1) (2026-09-25)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.3a1...2.5.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): the 121 subreddit vocabularies exist in every locale [\#118](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/118) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.4.3a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.4.3a1) (2026-09-24)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.4.2a1...2.4.3a1)
@@ -502,17 +510,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.6...0.3.7a1)
 
-**Merged pull requests:**
-
-- fix: skill.json [\#15](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/15) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [0.3.6](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.6) (2024-11-05)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/0.3.6a1...0.3.6)
-
-**Merged pull requests:**
-
-- Release 0.3.6a1 [\#14](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/14) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [0.3.6a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/0.3.6a1) (2024-11-05)
 
