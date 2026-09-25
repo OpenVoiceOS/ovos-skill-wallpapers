@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Achtergrond Wisselaar",
+  "description": "Afbeeldingen van geselecteerde subreddits.",
+  "examples": [
+    "nieuwe achtergrond",
+    "verander achtergrond naar natuur",
+    "laat me een afbeelding zien",
+    "laat me een afbeelding met honden zien",
+    "maak dat mijn achtergrond"
+  ],
+  "tags": [
+    "achtergronden",
+    "afbeeldingen",
+    "foto's"
+  ]
+}
