@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.7.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.7.0a1) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.6.0a1...2.7.0a1)
+
+**Merged pull requests:**
+
+- feat\(locale\): draft es-CO from es-ES \(copy, unvouched\) [\#122](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/122) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.6.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.6.0a1) (2026-09-25)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.5.0a1...2.6.0a1)
@@ -486,17 +494,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.0...1.0.1a1)
 
-**Merged pull requests:**
-
-- fix: drop unused files [\#20](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/20) ([JarbasAl](https://github.com/JarbasAl))
-
 ## [1.0.0](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.0) (2024-11-16)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.0a1...1.0.0)
-
-**Merged pull requests:**
-
-- Release 1.0.0a1 [\#19](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/19) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.0.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.0a1) (2024-11-16)
 
