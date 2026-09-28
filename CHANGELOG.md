@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.8.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.8.0a2) (2026-09-28)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.8.0a1...2.8.0a2)
+
+**Merged pull requests:**
+
+- test: multilang runner reads its locales from the golden files on disk [\#126](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/126) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.8.0a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.8.0a1) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.7.0a1...2.8.0a1)
@@ -470,17 +478,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.2...1.0.3a1)
 
-**Merged pull requests:**
-
-- Add Catalan translation [\#24](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/24) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [1.0.2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.2) (2024-11-17)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.2a1...1.0.2)
-
-**Merged pull requests:**
-
-- Release 1.0.2a1 [\#23](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/23) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.0.2a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.2a1) (2024-11-17)
 
