@@ -75,10 +75,18 @@ class WallpapersSkill(OVOSSkill):
         empty list (wallhaven answered 521 for a day), and indexing it here
         raised before any handler reached ``set_context``, so every intent
         gated on SlideShow stopped matching for the session."""
-        self.picture_list = get_wallpapers(query)
-        self.pic_idx = 0
-        if not self.picture_list:
+        pictures = get_wallpapers(query)
+        if not pictures:
+            # Keep the slideshow that is already on screen. Assigning the
+            # empty list here emptied picture_list while the SlideShow
+            # context from an earlier good fetch stayed set, so the gated
+            # handlers were still reachable with nothing to show:
+            # handle_set_wallpaper raised IndexError and handle_next walked
+            # pic_idx to -1. The caller speaks no_more_pictures, so the
+            # failed query is still reported.
             return None
+        self.picture_list = pictures
+        self.pic_idx = 0
         return self.picture_list[self.pic_idx]
 
     def change_wallpaper(self, image):
@@ -161,6 +169,8 @@ class WallpapersSkill(OVOSSkill):
     @intent_handler("next_picture.intent", requires_context=["SlideShow"])
     def handle_next(self, message=None):
         total = len(self.picture_list)
+        if not total:
+            return self.speak_dialog("no_more_pictures")
         self.pic_idx += 1
         if self.pic_idx >= total:
             self.pic_idx = total - 1
@@ -172,6 +182,8 @@ class WallpapersSkill(OVOSSkill):
 
     @intent_handler("previous_picture.intent", requires_context=["SlideShow"])
     def handle_prev(self, message=None):
+        if not self.picture_list:
+            return self.speak_dialog("no_more_pictures")
         self.pic_idx -= 1
         if self.pic_idx < 0:
             self.pic_idx = 0
@@ -183,6 +195,8 @@ class WallpapersSkill(OVOSSkill):
 
     @intent_handler("make_wallpaper.intent", requires_context=["SlideShow"])
     def handle_set_wallpaper(self, message=None):
+        if not self.picture_list:
+            return self.speak_dialog("no_more_pictures")
         image = self.picture_list[self.pic_idx]
         self.change_wallpaper(image)
         self.speak_dialog("wallpaper_changed")
