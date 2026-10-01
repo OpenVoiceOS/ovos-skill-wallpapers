@@ -6,19 +6,14 @@ shared ovoscope golden-utterance dataset, keyed by
 (module-scoped fixture) is booted for the whole suite; every row is its own
 parametrized test item.
 
-``next_picture.intent``, ``previous_picture.intent`` and ``make_wallpaper.intent`` are
-adapt intents that ``.require("SlideShow")`` (see ``__init__.py``). The
-context is session-scoped: ``self.set_context("SlideShow")`` is only set by
-the user-facing handlers that actually start a slideshow or show a
-picture/wallpaper (``handle_random_wallpaper``, ``handle_random_picture``,
-``handle_wallpaper_about``, ``handle_picture_about``); ``fetch_wallpapers``
-itself never sets the context, so a boot-time collection scan does not leak
-"SlideShow" globally. A brand-new session with no prior slideshow-starting
-utterance correctly does NOT match these intents, which is why the
-"after"/"before"/"wall paper change" rows below are xfailed here: they fire
-the utterance with no priming turn at all. ``test_slideshow_context_gate.py``
-covers the two-turn priming path (prime the context, then fire the follow-up)
-that these single-turn golden rows do not exercise.
+``next_picture.intent``, ``previous_picture.intent`` and
+``make_wallpaper.intent`` are gated with ``requires_context=["SlideShow"]``
+(see ``__init__.py``). The context is session-scoped and only the handlers
+that start a slideshow or show a picture set it. A row for a gated intent
+first primes its session with the first ``picture_random.intent`` row, then
+fires the row in that same session. The wallpaper backend is stubbed, so
+the priming handler never reaches the network. ``test_slideshow_context_gate.py``
+asserts the gate in both directions.
 
 Pipeline order note: this suite pins the real ovos-core default pipeline
 order (padatious/padacioso-high before adapt-high, confirmed via
@@ -30,6 +25,7 @@ default order avoids that test-construction artifact.
 """
 import json
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 from ovos_bus_client.message import Message
@@ -95,37 +91,19 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
     return observed_base == expected_base
 
 
-# Rows that do not currently route correctly, with the root-caused reason.
-# All xfails are strict=True: a row that starts passing must fail the build.
+# Rows that do not route, with the measured reason. Each xfail is strict:
+# a row that starts passing fails the build.
 #
-# "after"/"before"/"wall paper change" require the "SlideShow" adapt context
-# (see next_picture.intent/previous_picture.intent/make_wallpaper.intent in
-# ``__init__.py``). Until the boot-time context leak was fixed, the context
-# was set globally on skill load and these single-turn rows (no priming
-# utterance) matched unconditionally -- a false green documented in the old
-# module docstring. Now that the context is only set by a user-facing
-# handler that actually starts a slideshow/shows a picture, a fresh,
-# unprimed session correctly does NOT match these intents, so these single
-# -turn golden rows fail as written -- they are single-turn by construction
-# (the golden corpus fires one utterance per row) and were never expected to
-# carry priming context. That is unrelated to two-turn priming, which is
-# NOT blocked upstream (see test_slideshow_context_gate.py, which covers
-# and passes the two-turn prime-then-gate path with no core/workshop
-# changes needed).
+# "after", "before" and "wall paper change" do not expand any line of
+# next_picture.intent, previous_picture.intent or make_wallpaper.intent.
+# The runner primes the SlideShow context before every gated row, and these
+# three still come back ``ovos.intent.unmatched``.
+_NOT_A_TEMPLATE = ("does not expand any line of the en-US template; unmatched "
+                   "even after the SlideShow context is primed")
 _XFAIL_REASONS = {
-    "after": "requires SlideShow context from a prior priming utterance; "
-             "this golden row is single-turn by construction and carries no "
-             "priming turn (see test_slideshow_context_gate.py for two-turn "
-             "coverage of the primed case, which passes)",
-    "before": "requires SlideShow context from a prior priming utterance; "
-              "this golden row is single-turn by construction and carries no "
-              "priming turn (see test_slideshow_context_gate.py for two-turn "
-              "coverage of the primed case, which passes)",
-    "wall paper change": "requires SlideShow context from a prior priming "
-                          "utterance; this golden row is single-turn by "
-                          "construction and carries no priming turn (see "
-                          "test_slideshow_context_gate.py for two-turn "
-                          "coverage of the primed case, which passes)",
+    "after": _NOT_A_TEMPLATE,
+    "before": _NOT_A_TEMPLATE,
+    "wall paper change": _NOT_A_TEMPLATE,
 }
 
 
@@ -136,10 +114,7 @@ def _load_golden_rows():
             line = line.strip()
             if not line:
                 continue
-            row = json.loads(line)
-            if row.get("needs_manual"):
-                continue
-            rows.append(row)
+            rows.append(json.loads(line))
     return rows
 
 
@@ -150,14 +125,20 @@ def _as_param(row):
     return pytest.param(row, id=row["utterance"], marks=pytest.mark.xfail(reason=reason, strict=True))
 
 
-GOLDEN_ROWS = [_as_param(r) for r in _load_golden_rows()]
+_ROWS = _load_golden_rows()
+GOLDEN_ROWS = [_as_param(r) for r in _ROWS]
+GATED_INTENTS = {"next_picture.intent", "previous_picture.intent", "make_wallpaper.intent"}
+PRIMING_UTTERANCE = next(r["utterance"] for r in _ROWS
+                         if r["intent_label"] == "picture_random.intent")
+FAKE_WALLPAPERS = ["/tmp/fake_wallpaper_0.jpg", "/tmp/fake_wallpaper_1.jpg"]
 
 
 @pytest.fixture(scope="module")
 def minicroft():
-    mc = get_minicroft([SKILL_ID])
-    yield mc
-    mc.stop()
+    with patch("ovos_skill_wallpapers.get_wallpapers", return_value=list(FAKE_WALLPAPERS)):
+        mc = get_minicroft([SKILL_ID])
+        yield mc
+        mc.stop()
 
 
 def _fresh_session(session_id):
@@ -171,6 +152,8 @@ def _fresh_session(session_id):
 
 
 def _fire(mc, session, text):
+    """Fire one utterance; return the message types and the session the
+    orchestrator stamped on ``ovos.utterance.handled``."""
     utterance = Message(
         "recognizer_loop:utterance",
         {"utterances": [text], "lang": LANG},
@@ -178,11 +161,15 @@ def _fire(mc, session, text):
     )
     capture = CaptureSession(
         mc,
-        eof_msgs=["mycroft.skill.handler.start", "ovos.intent.unmatched"],
+        eof_msgs=["ovos.utterance.handled", "ovos.intent.unmatched"],
         ignore_messages=_IGNORE,
     )
     capture.capture(utterance, timeout=30)
-    return [m.msg_type for m in capture.finish()]
+    messages = capture.finish()
+    for m in messages:
+        if m.msg_type == "ovos.utterance.handled" and m.context.get("session"):
+            session = Session.deserialize(m.context["session"])
+    return [m.msg_type for m in messages], session
 
 
 def _golden_id(row):
@@ -193,7 +180,12 @@ def _golden_id(row):
 @pytest.mark.parametrize("row", GOLDEN_ROWS, ids=_golden_id)
 def test_golden_utterance(minicroft, row):
     session = _fresh_session(f"golden-{_golden_id(row)}")
-    types = _fire(minicroft, session, row["utterance"])
+    if row["intent_label"] in GATED_INTENTS:
+        prime_types, session = _fire(minicroft, session, PRIMING_UTTERANCE)
+        assert any(_matches_intent(t, SKILL_ID, "picture_random.intent") for t in prime_types), (
+            f"priming utterance {PRIMING_UTTERANCE!r} did not reach picture_random.intent: {prime_types!r}"
+        )
+    types, _ = _fire(minicroft, session, row["utterance"])
     assert any(_matches_intent(t, SKILL_ID, row["intent_label"]) for t in types), (
         f"{row['utterance']!r}: expected {SKILL_ID}:{row['intent_label']}, got {types!r}"
     )
@@ -204,6 +196,6 @@ def test_golden_utterance(minicroft, row):
 def test_negative_confusable_not_claimed(minicroft, negative):
     text, source_skill = negative
     session = _fresh_session(f"negative-{text}")
-    types = _fire(minicroft, session, text)
+    types, _ = _fire(minicroft, session, text)
     claimed = any(t.startswith(f"{SKILL_ID}:") for t in types)
     assert not claimed, f"{text!r} (from {source_skill}) was incorrectly claimed by {SKILL_ID}"

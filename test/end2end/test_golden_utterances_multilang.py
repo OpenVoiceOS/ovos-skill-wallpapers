@@ -6,11 +6,16 @@ own .intent templates (alternations/optionals resolved) and {query} slots
 filled from that locale's own query.entity values.
 
 ``next_picture.intent``, ``previous_picture.intent`` and
-``make_wallpaper.intent`` require the "SlideShow" adapt context (see
-test_golden_utterances.py / test_slideshow_context_gate.py for the en-US
-two-turn coverage of that gate). These rows are single-turn by
-construction, so they are expected to xfail here for the same structural
-reason as the en-US suite -- not a coverage gap, not a translation defect.
+``make_wallpaper.intent`` require the "SlideShow" context. A row for one of
+them first primes its session with the locale's own first
+``picture_random.intent`` row, which opens the gate, and then fires the row
+in that same session (the two-turn shape of test_slideshow_context_gate.py).
+The wallpaper backend is stubbed, so the priming handler never reaches the
+network.
+
+The locales come from the golden files on disk, and collection fails unless
+the set of golden files equals the set of locale directories that ship an
+``.intent`` file.
 
 One MiniCroft is booted per locale in turn (lang=<locale>, no
 secondary_langs -- see ovos-skill-date-time/test/end2end/test_intents_it_it.py
@@ -19,6 +24,7 @@ on dev).
 import json
 import os
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 from ovos_bus_client.message import Message
@@ -46,14 +52,20 @@ _IGNORE = [
 ]
 
 END2END_DIR = Path(__file__).parent
+LOCALE_DIR = END2END_DIR.parent.parent / "locale"
+
+GOLDEN_LANGS = {p.stem.split("golden_utterances_", 1)[1]
+                for p in END2END_DIR.glob("golden_utterances_*.jsonl")}
+INTENT_LANGS = {d.name for d in LOCALE_DIR.iterdir()
+                if d.is_dir() and any(d.glob("*.intent"))}
+assert GOLDEN_LANGS == INTENT_LANGS, (
+    f"golden files without an .intent locale: {sorted(GOLDEN_LANGS - INTENT_LANGS)}; "
+    f".intent locales without a golden file: {sorted(INTENT_LANGS - GOLDEN_LANGS)}"
+)
 
 # en-US runs in test_golden_utterances.py.
 EXCLUDED_LANGS = {"en-US"}
-LANGS = sorted(
-    lang for lang in (p.stem.split("golden_utterances_", 1)[1]
-                      for p in END2END_DIR.glob("golden_utterances_*.jsonl"))
-    if lang not in EXCLUDED_LANGS
-)
+LANGS = sorted(GOLDEN_LANGS - EXCLUDED_LANGS)
 assert LANGS, "no golden_utterances_<lang>.jsonl files found"
 
 GATED_INTENTS = {"next_picture.intent", "previous_picture.intent", "make_wallpaper.intent"}
@@ -71,26 +83,21 @@ def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
 
 def _load_rows(lang):
     path = END2END_DIR / f"golden_utterances_{lang}.jsonl"
-    rows = []
-    needs_manual = 0
     with open(path, encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if not line:
-                continue
-            row = json.loads(line)
-            if row.get("needs_manual"):
-                needs_manual += 1
-                continue
-            rows.append(row)
-    assert rows or needs_manual, f"{lang}: no golden rows"
+        rows = [json.loads(line) for line in f if line.strip()]
+    assert rows, f"{lang}: no golden rows"
     return rows
 
 
-ALL_ROWS = []
-for _lang in LANGS:
-    for _row in _load_rows(_lang):
-        ALL_ROWS.append(_row)
+ROWS_BY_LANG = {lang: _load_rows(lang) for lang in LANGS}
+ALL_ROWS = [row for lang in LANGS for row in ROWS_BY_LANG[lang]]
+PRIMING_UTTERANCE = {}
+for _lang, _rows in ROWS_BY_LANG.items():
+    _priming = [r["utterance"] for r in _rows if r["intent_label"] == "picture_random.intent"]
+    assert _priming, f"{_lang}: no picture_random.intent row to prime the SlideShow context"
+    PRIMING_UTTERANCE[_lang] = _priming[0]
+
+FAKE_WALLPAPERS = ["/tmp/fake_wallpaper_0.jpg", "/tmp/fake_wallpaper_1.jpg"]
 
 
 def _as_param(row):
@@ -111,6 +118,9 @@ def mc_factory(request):
     # under CI resource constraints -- same heavy-skill convention as
     # ovos-skill-alerts' conftest.py.
     os.environ.setdefault("OVOSCOPE_TRAINED_TIMEOUT", "300")
+    backend = patch("ovos_skill_wallpapers.get_wallpapers", return_value=list(FAKE_WALLPAPERS))
+    backend.start()
+    request.addfinalizer(backend.stop)
 
     def _get(lang):
         if lang not in _BOOTED:
@@ -121,11 +131,17 @@ def mc_factory(request):
     return _get
 
 
-def _types(mc, text, lang, session_id):
+def _session(session_id, lang):
     session = Session(session_id)
     session.lang = lang
     session.pipeline = list(_PIPELINE)
     session.blacklisted_intents = []
+    return session
+
+
+def _fire(mc, session, text, lang):
+    """Fire one utterance; return the message types and the session the
+    orchestrator stamped on ``ovos.utterance.handled``."""
     utterance = Message(
         "recognizer_loop:utterance",
         {"utterances": [text], "lang": lang},
@@ -133,52 +149,56 @@ def _types(mc, text, lang, session_id):
     )
     capture = CaptureSession(
         mc,
-        eof_msgs=["mycroft.skill.handler.start", "ovos.intent.unmatched"],
+        eof_msgs=["ovos.utterance.handled", "ovos.intent.unmatched"],
         ignore_messages=_IGNORE,
     )
     capture.capture(utterance, timeout=30)
-    return [m.msg_type for m in capture.finish()]
+    messages = capture.finish()
+    for m in messages:
+        if m.msg_type == "ovos.utterance.handled" and m.context.get("session"):
+            session = Session.deserialize(m.context["session"])
+    return [m.msg_type for m in messages], session
 
 
 def _golden_id(row):
     return f"{row['lang']}-{row['intent_label']}-{row['utterance']}"
 
 
-# These rows are literal, faithful expansions of their locale's own
-# wallpaper_random.intent/wallpaper_about.intent/picture_about.intent
-# templates (verified against the source .intent files) that padatious
-# nonetheless fails to classify -- reproduced twice, unrelated to test
-# timeouts (bumping OVOSCOPE_TRAINED_TIMEOUT and max_wait did not change
-# the outcome). ca-ES's wallpaper_random.intent is a single line with six
-# nested alternation groups; es-ES's wallpaper_random.intent/
-# wallpaper_about.intent/picture_about.intent are similarly long. This
-# reads as a padatious training-recall gap on the longest, most
-# combinatorially explosive templates in this skill, not a locale-content
-# defect -- there is no shorter alternate line in these single-line
-# intent files to substitute instead.
+# These rows do not expand their locale's template. The templates join two
+# alternation groups with no space between them, for example
+# ``(pantalla de inicio|fondo de pantalla)(aleatorio|nuevo)`` in es-ES
+# wallpaper_random.intent and ``(nueva|aleatoria|)(sobre|para|con)`` in es-ES
+# picture_about.intent, so the trained sentence fuses two words
+# ("inicioaleatorio", "nuevasobre"). ca-ES has the same join in
+# wallpaper_random.intent ``(un|una|el|la|es|sa|)(nou|nova|)`` and in
+# picture_random.intent ``mostra('m|)`` and ``(nou|nova|aleatori|aleatòria)
+# (imatge|...)``. The rows write the words apart, and padatious does not
+# match them. The fix belongs in the locale files.
 KNOWN_BUGS = {
-    ("ca-ES", "canvia un nou fons nou aleatori"): "padatious training-recall gap on ca-ES wallpaper_random.intent's single long multi-group template; reproduced twice",
-    ("ca-ES", "posa una nova fons de pantalla nova aleatòria"): "padatious training-recall gap on ca-ES wallpaper_random.intent's single long multi-group template; reproduced twice",
-    ("ca-ES", "mostra 'm un altre nou imatge"): "padatious training-recall gap on ca-ES picture_random.intent; reproduced twice",
-    ("es-ES", "pantalla de inicio aleatorio"): "padatious training-recall gap on es-ES wallpaper_random.intent's single long multi-group template; reproduced twice",
-    ("es-ES", "muestra imagen nueva sobre naturaleza"): "padatious training-recall gap on es-ES picture_about.intent; reproduced twice",
-    ("es-ES", "muestra imagen nueva sobre espacio"): "padatious training-recall gap on es-ES picture_about.intent; reproduced twice",
-    ("es-ES", "mostrar foto aleatoria para naturaleza"): "padatious training-recall gap on es-ES picture_about.intent; reproduced twice",
+    ("ca-ES", "canvia un nou fons nou aleatori"): "ca-ES wallpaper_random.intent joins two groups with no space; the row writes the words apart",
+    ("ca-ES", "posa una nova fons de pantalla nova aleatòria"): "ca-ES wallpaper_random.intent joins two groups with no space; the row writes the words apart",
+    ("ca-ES", "mostra 'm un altre nou imatge"): "ca-ES picture_random.intent joins two groups with no space; the row writes the words apart",
+    ("es-ES", "pantalla de inicio aleatorio"): "es-ES wallpaper_random.intent joins two groups with no space; the row writes the words apart",
+    ("es-ES", "muestra imagen nueva sobre naturaleza"): "es-ES picture_about.intent joins two groups with no space; the row writes the words apart",
+    ("es-ES", "muestra imagen nueva sobre espacio"): "es-ES picture_about.intent joins two groups with no space; the row writes the words apart",
+    ("es-ES", "mostrar foto aleatoria para naturaleza"): "es-ES picture_about.intent joins two groups with no space; the row writes the words apart",
 }
 
 
 @pytest.mark.timeout(400)
 @pytest.mark.parametrize("row", GOLDEN_ROWS, ids=_golden_id)
 def test_golden_utterance_multilang(mc_factory, row):
-    mc = mc_factory(row["lang"])
-    types = _types(mc, row["utterance"], row["lang"], f"golden-{_golden_id(row)}")
-    matched = any(_matches_intent(t, SKILL_ID, row["intent_label"]) for t in types)
-    if row["intent_label"] in GATED_INTENTS and not matched:
-        pytest.xfail(
-            reason="requires SlideShow context from a prior priming utterance; "
-                    "this golden row is single-turn by construction, see "
-                    "test_slideshow_context_gate.py for the primed two-turn case"
+    lang = row["lang"]
+    mc = mc_factory(lang)
+    session = _session(f"golden-{_golden_id(row)}", lang)
+    if row["intent_label"] in GATED_INTENTS:
+        prime_types, session = _fire(mc, session, PRIMING_UTTERANCE[lang], lang)
+        assert any(_matches_intent(t, SKILL_ID, "picture_random.intent") for t in prime_types), (
+            f"[{lang}] priming utterance {PRIMING_UTTERANCE[lang]!r} did not reach "
+            f"picture_random.intent: {prime_types!r}"
         )
+    types, _ = _fire(mc, session, row["utterance"], lang)
+    matched = any(_matches_intent(t, SKILL_ID, row["intent_label"]) for t in types)
     bug_key = (row["lang"], row["utterance"])
     if bug_key in KNOWN_BUGS and not matched:
         pytest.xfail(reason=f"known-bug: {KNOWN_BUGS[bug_key]}")
