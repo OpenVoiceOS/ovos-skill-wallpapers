@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.8.1a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.8.1a1) (2026-10-01)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.8.0a2...2.8.1a1)
+
+**Merged pull requests:**
+
+- fix: a failed fetch keeps the slideshow that is already on screen [\#128](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/128) ([openvoiceos-bot](https://github.com/openvoiceos-bot))
+
 ## [2.8.0a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/2.8.0a2) (2026-09-28)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/2.8.0a1...2.8.0a2)
@@ -390,19 +398,19 @@
 
 ## [1.0.7](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a2...1.0.7)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a1...1.0.7)
 
 **Merged pull requests:**
 
 - Release 1.0.7a2 [\#36](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/36) ([github-actions[bot]](https://github.com/apps/github-actions))
 
-## [1.0.7a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a2) (2024-12-02)
-
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a1...1.0.7a2)
-
 ## [1.0.7a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a1) (2024-12-02)
 
-[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.6...1.0.7a1)
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.7a2...1.0.7a1)
+
+## [1.0.7a2](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.7a2) (2024-12-02)
+
+[Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.6...1.0.7a2)
 
 **Merged pull requests:**
 
@@ -462,17 +470,9 @@
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.3...1.0.4a1)
 
-**Merged pull requests:**
-
-- da-dk/translate [\#26](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/26) ([gitlocalize-app[bot]](https://github.com/apps/gitlocalize-app))
-
 ## [1.0.3](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.3) (2024-11-23)
 
 [Full Changelog](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/compare/1.0.3a1...1.0.3)
-
-**Merged pull requests:**
-
-- Release 1.0.3a1 [\#25](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/pull/25) ([github-actions[bot]](https://github.com/apps/github-actions))
 
 ## [1.0.3a1](https://github.com/OpenVoiceOS/ovos-skill-wallpapers/tree/1.0.3a1) (2024-11-23)
 
