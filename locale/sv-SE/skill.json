@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Bakgrundsbyte",
+  "description": "Bilder från utvalda subreddits.",
+  "examples": [
+    "ny bakgrundsbild",
+    "byt bakgrundsbild till natur",
+    "visa mig en bild",
+    "visa mig en bild med hundar",
+    "gör den till min bakgrundsbild"
+  ],
+  "tags": [
+    "bakgrundsbilder",
+    "bilder",
+    "foton"
+  ]
+}

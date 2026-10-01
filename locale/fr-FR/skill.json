@@ -1,0 +1,22 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": ["ovos-PHAL-plugin-wallpaper-manager"],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Fonds d'écran",
+  "description": "Des images issues de sources sélectionnées.",
+  "examples": [
+    "un nouveau fond d'écran",
+    "change le fond d'écran pour la nature",
+    "montre-moi une image",
+    "montre-moi une image de chiens",
+    "mets cette image en fond d'écran"
+  ],
+  "tags": ["wallpapers", "images", "pictures"]
+}

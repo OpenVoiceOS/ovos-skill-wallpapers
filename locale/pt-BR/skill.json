@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Trocar Papel de Parede",
+  "description": "Imagens de subreddits selecionados.",
+  "examples": [
+    "novo papel de parede",
+    "mude o papel de parede para natureza",
+    "me mostre uma imagem",
+    "me mostre uma imagem com cachorros",
+    "defina isso como meu papel de parede"
+  ],
+  "tags": [
+    "papéis de parede",
+    "imagens",
+    "fotos"
+  ]
+}
