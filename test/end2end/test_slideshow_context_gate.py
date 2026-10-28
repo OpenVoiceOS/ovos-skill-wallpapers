@@ -1,10 +1,9 @@
 """Two-turn coverage for the "SlideShow" context gate on
 ``next_picture.intent``/``previous_picture.intent``/``make_wallpaper.intent``.
 
-Those three intents are now defined as ``.intent`` files (padatious/
-padacioso), gated via ``@intent_handler(..., requires_context=["SlideShow"])``
-(see ``__init__.py``) instead of the previous ``IntentBuilder(...).require(
-"SlideShow")`` adapt construction. ``self.set_context("SlideShow")`` is only
+Those three intents are ``.intent`` files gated via
+``@intent_handler(..., requires_context=["SlideShow"])`` (see
+``__init__.py``). ``self.set_context("SlideShow")`` is only
 set by the user-facing handlers that actually start a slideshow or show a
 picture/wallpaper (``handle_random_wallpaper``, ``handle_random_picture``,
 ``handle_wallpaper_about``, ``handle_picture_about``), so the gate should
@@ -46,18 +45,11 @@ from unittest.mock import patch
 import pytest
 from ovos_bus_client.message import Message
 from ovos_bus_client.session import Session
-from ovoscope import CaptureSession, get_minicroft
+from ovoscope import CaptureSession
+from ovoscope.routing import PIPELINE, TALLY, get_prototype_minicroft
 
 SKILL_ID = "skill-ovos-wallpapers.openvoiceos"
 LANG = "en-US"
-
-_PIPELINE = [
-    "ovos-padatious-pipeline-plugin-high",
-    "ovos-padacioso-pipeline-plugin-high",
-    "ovos-adapt-pipeline-plugin-high",
-    "ovos-padacioso-pipeline-plugin-medium",
-    "ovos-adapt-pipeline-plugin-medium",
-]
 
 _IGNORE = [
     "speak",
@@ -79,16 +71,6 @@ _GATED_CASES = [
 ]
 
 
-def _matches_intent(msg_type: str, skill_id: str, intent_label: str) -> bool:
-    prefix = f"{skill_id}:"
-    if not msg_type.startswith(prefix):
-        return False
-    observed = msg_type[len(prefix):]
-    observed_base = observed.rsplit(".", 1)[0] if observed.endswith(".intent") else observed
-    expected_base = intent_label.rsplit(".", 1)[0] if intent_label.endswith(".intent") else intent_label
-    return observed_base == expected_base
-
-
 #: The priming intent calls ``fetch_wallpapers``, which reaches wallhaven.cc
 #: unless the backend is stubbed. On 2026-09-19 wallhaven answered 521 for
 #: a day, the fetch came back empty, and every case here failed for a
@@ -100,7 +82,7 @@ FAKE_WALLPAPERS = ["/tmp/fake_wallpaper_0.jpg", "/tmp/fake_wallpaper_1.jpg"]
 @pytest.fixture(scope="module")
 def minicroft():
     with patch("ovos_skill_wallpapers.get_wallpapers", return_value=list(FAKE_WALLPAPERS)):
-        mc = get_minicroft([SKILL_ID])
+        mc = get_prototype_minicroft([SKILL_ID], lang=LANG)
         yield mc
         mc.stop()
 
@@ -108,7 +90,7 @@ def minicroft():
 def _session(session_id):
     session = Session(session_id)
     session.lang = LANG
-    session.pipeline = list(_PIPELINE)
+    session.pipeline = list(PIPELINE)
     session.blacklisted_intents = []
     return session
 
@@ -141,16 +123,11 @@ def test_gated_intent_matches_after_priming_slideshow(minicroft, utterance, inte
     migrated intent within that SAME session."""
     session = _session(f"gate-positive-{intent_label}")
     prime_types, session = _fire(minicroft, session, "show me a picture")
-    assert any(
-        t.startswith(f"{SKILL_ID}:picture_random")
-        for t in prime_types
-    ), f"priming utterance did not route to picture_random.intent: {prime_types!r}"
+    TALLY.assert_routed("show me a picture", f"{SKILL_ID}:picture_random",
+                        prime_types)
 
     types, _ = _fire(minicroft, session, utterance)
-    assert any(_matches_intent(t, SKILL_ID, intent_label) for t in types), (
-        f"{utterance!r} after priming a slideshow: expected "
-        f"{SKILL_ID}:{intent_label}, got {types!r}"
-    )
+    TALLY.assert_routed(utterance, f"{SKILL_ID}:{intent_label}", types)
 
 
 @pytest.mark.timeout(60)
@@ -161,7 +138,4 @@ def test_gated_intent_does_not_match_fresh_session(minicroft, utterance, intent_
     false-positive before the boot-time context leak was fixed."""
     session = _session(f"gate-negative-{intent_label}")
     types, _ = _fire(minicroft, session, utterance)
-    assert not any(_matches_intent(t, SKILL_ID, intent_label) for t in types), (
-        f"{utterance!r} in a fresh, unprimed session incorrectly matched "
-        f"{intent_label}: {types!r}"
-    )
+    TALLY.assert_not_routed(utterance, [f"{SKILL_ID}:{intent_label}"], types)
