@@ -1,0 +1,28 @@
+{
+  "skill_id": "skill-ovos-wallpapers.openvoiceos",
+  "source": "https://github.com/OpenVoiceOS/skill-ovos-wallpapers",
+  "extra_plugins": {
+    "core": [],
+    "PHAL": [
+      "ovos-PHAL-plugin-wallpaper-manager"
+    ],
+    "listener": [],
+    "audio": [],
+    "media": [],
+    "gui": []
+  },
+  "name": "Mudar Fundo de Ecrã",
+  "description": "Imagens de subreddits selecionados.",
+  "examples": [
+    "novo fundo de ecrã",
+    "muda o fundo de ecrã para natureza",
+    "mostra-me uma imagem",
+    "mostra-me uma imagem com cães",
+    "define isso como o meu fundo de ecrã"
+  ],
+  "tags": [
+    "fundos de ecrã",
+    "imagens",
+    "fotos"
+  ]
+}

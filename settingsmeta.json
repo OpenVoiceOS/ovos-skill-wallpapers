@@ -51,283 +51,283 @@
                         "value": "false"
                     },
                     {
-                        "name": "EarthPorn",
+                        "name": "earth_porn",
                         "type": "checkbox",
                         "label": "Earth Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BotanicalPorn",
+                        "name": "botanical_porn",
                         "type": "checkbox",
                         "label": "Botanical Porn",
                         "value": "false"
                     },
                     {
-                        "name": "WaterPorn",
+                        "name": "water_porn",
                         "type": "checkbox",
                         "label": "Water Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SeaPorn",
+                        "name": "sea_porn",
                         "type": "checkbox",
                         "label": "Sea Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SkyPorn",
+                        "name": "sky_porn",
                         "type": "checkbox",
                         "label": "Sky Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FirePorn",
+                        "name": "fire_porn",
                         "type": "checkbox",
                         "label": "Fire Porn",
                         "value": "false"
                     },
                     {
-                        "name": "DesertPorn",
+                        "name": "desert_porn",
                         "type": "checkbox",
                         "label": "Desert Porn",
                         "value": "false"
                     },
                     {
-                        "name": "WinterPorn",
+                        "name": "winter_porn",
                         "type": "checkbox",
                         "label": "Winter Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AutumnPorn",
+                        "name": "autumn_porn",
                         "type": "checkbox",
                         "label": "Autumn Porn",
                         "value": "false"
                     },
                     {
-                        "name": "WeatherPorn",
+                        "name": "weather_porn",
                         "type": "checkbox",
                         "label": "Weather Porn",
                         "value": "false"
                     },
                     {
-                        "name": "GeologyPorn",
+                        "name": "geology_porn",
                         "type": "checkbox",
                         "label": "Geology Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SpacePorn",
+                        "name": "space_porn",
                         "type": "checkbox",
                         "label": "Space Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BeachPorn",
+                        "name": "beach_porn",
                         "type": "checkbox",
                         "label": "Beach Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MushroomPorn",
+                        "name": "mushroom_porn",
                         "type": "checkbox",
                         "label": "Mushroom Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SpringPorn",
+                        "name": "spring_porn",
                         "type": "checkbox",
                         "label": "Spring Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SummerPorn",
+                        "name": "summer_porn",
                         "type": "checkbox",
                         "label": "Summer Porn",
                         "value": "false"
                     },
                     {
-                        "name": "LavaPorn",
+                        "name": "lava_porn",
                         "type": "checkbox",
                         "label": "Lava Porn",
                         "value": "false"
                     },
                     {
-                        "name": "LakePorn",
+                        "name": "lake_porn",
                         "type": "checkbox",
                         "label": "Lake Porn",
                         "value": "false"
                     },
                     {
-                        "name": "CityPorn",
+                        "name": "city_porn",
                         "type": "checkbox",
                         "label": "City Porn",
                         "value": "false"
                     },
                     {
-                        "name": "VillagePorn",
+                        "name": "village_porn",
                         "type": "checkbox",
                         "label": "Village Porn",
                         "value": "false"
                     },
                     {
-                        "name": "RuralPorn",
+                        "name": "rural_porn",
                         "type": "checkbox",
                         "label": "Rural Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ArchitecturePorn",
+                        "name": "architecture_porn",
                         "type": "checkbox",
                         "label": "Architecture Porn",
                         "value": "false"
                     },
                     {
-                        "name": "HousePorn",
+                        "name": "house_porn",
                         "type": "checkbox",
                         "label": "House Porn",
                         "value": "false"
                     },
                     {
-                        "name": "CabinPorn",
+                        "name": "cabin_porn",
                         "type": "checkbox",
                         "label": "Cabin Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ChurchPorn",
+                        "name": "church_porn",
                         "type": "checkbox",
                         "label": "Church Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AbandonedPorn",
+                        "name": "abandoned_porn",
                         "type": "checkbox",
                         "label": "Abandoned Porn",
                         "value": "false"
                     },
                     {
-                        "name": "CemeteryPorn",
+                        "name": "cemetery_porn",
                         "type": "checkbox",
                         "label": "Cemetery Porn",
                         "value": "false"
                     },
                     {
-                        "name": "InfrastructurePorn",
+                        "name": "infrastructure_porn",
                         "type": "checkbox",
                         "label": "Infrastructure Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MachinePorn",
+                        "name": "machine_porn",
                         "type": "checkbox",
                         "label": "Machine Porn",
                         "value": "false"
                     },
                     {
-                        "name": "CarPorn",
+                        "name": "car_porn",
                         "type": "checkbox",
                         "label": "Car Porn",
                         "value": "false"
                     },
                     {
-                        "name": "F1Porn",
+                        "name": "f1_porn",
                         "type": "checkbox",
-                        "label": "F1Porn",
+                        "label": "f1_porn",
                         "value": "false"
                     },
                     {
-                        "name": "MotorcyclePorn",
+                        "name": "motorcycle_porn",
                         "type": "checkbox",
                         "label": "Motorcycle Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MilitaryPorn",
+                        "name": "military_porn",
                         "type": "checkbox",
                         "label": "Military Porn",
                         "value": "false"
                     },
                     {
-                        "name": "GunPorn",
+                        "name": "gun_porn",
                         "type": "checkbox",
                         "label": "Gun Porn",
                         "value": "false"
                     },
                     {
-                        "name": "KnifePorn",
+                        "name": "knife_porn",
                         "type": "checkbox",
                         "label": "Knife Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BoatPorn",
+                        "name": "boat_porn",
                         "type": "checkbox",
                         "label": "Boat Porn",
                         "value": "false"
                     },
                     {
-                        "name": "RidesPorn",
+                        "name": "rides_porn",
                         "type": "checkbox",
                         "label": "Rides Porn",
                         "value": "false"
                     },
                     {
-                        "name": "DestructionPorn",
+                        "name": "destruction_porn",
                         "type": "checkbox",
                         "label": "Destruction Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ThingsCutInHalfPorn",
+                        "name": "things_cut_in_half_porn",
                         "type": "checkbox",
                         "label": "Things Cut In Half Porn",
                         "value": "false"
                     },
                     {
-                        "name": "StarshipPorn",
+                        "name": "starship_porn",
                         "type": "checkbox",
                         "label": "Starship Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ToolPorn",
+                        "name": "tool_porn",
                         "type": "checkbox",
                         "label": "Tool Porn",
                         "value": "false"
                     },
                     {
-                        "name": "TechnologyPorn",
+                        "name": "technology_porn",
                         "type": "checkbox",
                         "label": "Technology Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BridgePorn",
+                        "name": "bridge_porn",
                         "type": "checkbox",
                         "label": "Bridge Porn",
                         "value": "false"
                     },
                     {
-                        "name": "PolicePorn",
+                        "name": "police_porn",
                         "type": "checkbox",
                         "label": "Police Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SteamPorn",
+                        "name": "steam_porn",
                         "type": "checkbox",
                         "label": "Steam Porn",
                         "value": "false"
                     },
                     {
-                        "name": "RetailPorn",
+                        "name": "retail_porn",
                         "type": "checkbox",
                         "label": "Retail Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SpaceFlightPorn",
+                        "name": "space_flight_porn",
                         "type": "checkbox",
                         "label": "Space Flight Porn",
                         "value": "false"
@@ -345,235 +345,235 @@
                         "value": "false"
                     },
                     {
-                        "name": "AnimalPorn",
+                        "name": "animal_porn",
                         "type": "checkbox",
                         "label": "Animal Porn",
                         "value": "false"
                     },
                     {
-                        "name": "HumanPorn",
+                        "name": "human_porn",
                         "type": "checkbox",
                         "label": "Human Porn",
                         "value": "false"
                     },
                     {
-                        "name": "EarthlingPorn",
+                        "name": "earthling_porn",
                         "type": "checkbox",
                         "label": "Earthling Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AdrenalinePorn",
+                        "name": "adrenaline_porn",
                         "type": "checkbox",
                         "label": "Adrenaline Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ClimbingPorn",
+                        "name": "climbing_porn",
                         "type": "checkbox",
                         "label": "Climbing Porn",
                         "value": "false"
                     },
                     {
-                        "name": "SportsPorn",
+                        "name": "sports_porn",
                         "type": "checkbox",
                         "label": "Sports Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AgriculturePorn",
+                        "name": "agriculture_porn",
                         "type": "checkbox",
                         "label": "Agriculture Porn",
                         "value": "false"
                     },
                     {
-                        "name": "TeaPorn",
+                        "name": "tea_porn",
                         "type": "checkbox",
                         "label": "Tea Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BonsaiPorn",
+                        "name": "bonsai_porn",
                         "type": "checkbox",
                         "label": "Bonsai Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FoodPorn",
+                        "name": "food_porn",
                         "type": "checkbox",
                         "label": "Food Porn",
                         "value": "false"
                     },
                     {
-                        "name": "CulinaryPorn",
+                        "name": "culinary_porn",
                         "type": "checkbox",
                         "label": "Culinary Porn",
                         "value": "false"
                     },
                     {
-                        "name": "DessertPorn",
+                        "name": "dessert_porn",
                         "type": "checkbox",
                         "label": "Dessert Porn",
                         "value": "false"
                     },
                     {
-                        "name": "DesignPorn",
+                        "name": "design_porn",
                         "type": "checkbox",
                         "label": "Design Porn",
                         "value": "false"
                     },
                     {
-                        "name": "RoomPorn",
+                        "name": "room_porn",
                         "type": "checkbox",
                         "label": "Room Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AlbumArtPorn",
+                        "name": "album_art_porn",
                         "type": "checkbox",
                         "label": "Album Art Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MetalPorn",
+                        "name": "metal_porn",
                         "type": "checkbox",
                         "label": "Metal Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MoviePosterPorn",
+                        "name": "movie_poster_porn",
                         "type": "checkbox",
                         "label": "Movie Poster Porn",
                         "value": "false"
                     },
                     {
-                        "name": "TelevisionPosterPorn",
+                        "name": "television_poster_porn",
                         "type": "checkbox",
                         "label": "Television Poster Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ComicBookPorn",
+                        "name": "comic_book_porn",
                         "type": "checkbox",
                         "label": "Comic Book Porn",
                         "value": "false"
                     },
                     {
-                        "name": "StreetArtPorn",
+                        "name": "street_art_porn",
                         "type": "checkbox",
                         "label": "Street Art Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AdPorn",
+                        "name": "ad_porn",
                         "type": "checkbox",
                         "label": "Ad Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ArtPorn",
+                        "name": "art_porn",
                         "type": "checkbox",
                         "label": "Art Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FractalPorn",
+                        "name": "fractal_porn",
                         "type": "checkbox",
                         "label": "Fractal Porn",
                         "value": "false"
                     },
                     {
-                        "name": "InstrumentPorn",
+                        "name": "instrument_porn",
                         "type": "checkbox",
                         "label": "Instrument Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ExposurePorn",
+                        "name": "exposure_porn",
                         "type": "checkbox",
                         "label": "Exposure Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MacroPorn",
+                        "name": "macro_porn",
                         "type": "checkbox",
                         "label": "Macro Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MicroPorn",
+                        "name": "micro_porn",
                         "type": "checkbox",
                         "label": "Micro Porn",
                         "value": "false"
                     },
                     {
-                        "name": "GeekPorn",
+                        "name": "geek_porn",
                         "type": "checkbox",
                         "label": "Geek Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MTGPorn",
+                        "name": "mtgporn",
                         "type": "checkbox",
                         "label": "MTG Porn",
                         "value": "false"
                     },
                     {
-                        "name": "GamerPorn",
+                        "name": "gamer_porn",
                         "type": "checkbox",
                         "label": "Gamer Porn",
                         "value": "false"
                     },
                     {
-                        "name": "PowerWashingPorn",
+                        "name": "power_washing_porn",
                         "type": "checkbox",
                         "label": "Power Washing Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AerialPorn",
+                        "name": "aerial_porn",
                         "type": "checkbox",
                         "label": "Aerial Porn",
                         "value": "false"
                     },
                     {
-                        "name": "OrganizationPorn",
+                        "name": "organization_porn",
                         "type": "checkbox",
                         "label": "Organization Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FashionPorn",
+                        "name": "fashion_porn",
                         "type": "checkbox",
                         "label": "Fashion Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AVPorn",
+                        "name": "avporn",
                         "type": "checkbox",
                         "label": "AV Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ApocalypsePorn",
+                        "name": "apocalypse_porn",
                         "type": "checkbox",
                         "label": "Apocalypse Porn",
                         "value": "false"
                     },
                     {
-                        "name": "InfraredPorn",
+                        "name": "infrared_porn",
                         "type": "checkbox",
                         "label": "Infrared Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ViewPorn",
+                        "name": "view_porn",
                         "type": "checkbox",
                         "label": "View Porn",
                         "value": "false"
                     },
                     {
-                        "name": "HellscapePorn",
+                        "name": "hellscape_porn",
                         "type": "checkbox",
                         "label": "Hellscape Porn",
                         "value": "false"
@@ -585,169 +585,169 @@
                         "value": "false"
                     },
                     {
-                        "name": "HistoryPorn",
+                        "name": "history_porn",
                         "type": "checkbox",
                         "label": "History Porn",
                         "value": "false"
                     },
                     {
-                        "name": "UniformPorn",
+                        "name": "uniform_porn",
                         "type": "checkbox",
                         "label": "Uniform Porn",
                         "value": "false"
                     },
                     {
-                        "name": "BookPorn",
+                        "name": "book_porn",
                         "type": "checkbox",
                         "label": "Book Porn",
                         "value": "false"
                     },
                     {
-                        "name": "NewsPorn",
+                        "name": "news_porn",
                         "type": "checkbox",
                         "label": "News Porn",
                         "value": "false"
                     },
                     {
-                        "name": "QuotesPorn",
+                        "name": "quotes_porn",
                         "type": "checkbox",
                         "label": "Quotes Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FuturePorn",
+                        "name": "future_porn",
                         "type": "checkbox",
                         "label": "Future Porn",
                         "value": "false"
                     },
                     {
-                        "name": "FossilPorn",
+                        "name": "fossil_porn",
                         "type": "checkbox",
                         "label": "Fossil Porn",
                         "value": "false"
                     },
                     {
-                        "name": "MegalithPorn",
+                        "name": "megalith_porn",
                         "type": "checkbox",
                         "label": "Megalith Porn",
                         "value": "false"
                     },
                     {
-                        "name": "ArtefactPorn",
+                        "name": "artefact_porn",
                         "type": "checkbox",
                         "label": "Artefact Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AmateurEarthPorn",
+                        "name": "amateur_earth_porn",
                         "type": "checkbox",
                         "label": "Amateur Earth Porn",
                         "value": "false"
                     },
                     {
-                        "name": "AmateurPhotography",
+                        "name": "amateur_photography",
                         "type": "checkbox",
                         "label": "Amateur Photography",
                         "value": "false"
                     },
                     {
-                        "name": "ArtistOfTheDay",
+                        "name": "artist_of_the_day",
                         "type": "checkbox",
                         "label": "Artist Of The Day",
                         "value": "false"
                     },
                     {
-                        "name": "BackgroundArt",
+                        "name": "background_art",
                         "type": "checkbox",
                         "label": "Background Art",
                         "value": "true"
                     },
                     {
-                        "name": "Conservation",
+                        "name": "conservation",
                         "type": "checkbox",
-                        "label": "Conservation",
+                        "label": "conservation",
                         "value": "false"
                     },
                     {
-                        "name": "EarthPornVids",
+                        "name": "earth_porn_vids",
                         "type": "checkbox",
                         "label": "Earth Porn Vids",
                         "value": "false"
                     },
                     {
-                        "name": "EyeCandy",
+                        "name": "eye_candy",
                         "type": "checkbox",
                         "label": "Eye Candy",
                         "value": "false"
                     },
                     {
-                        "name": "FWEPP",
+                        "name": "fwepp",
                         "type": "checkbox",
-                        "label": "FWEPP",
+                        "label": "fwepp",
                         "value": "false"
                     },
                     {
-                        "name": "ImaginaryLandscapes",
+                        "name": "imaginary_landscapes",
                         "type": "checkbox",
                         "label": "Imaginary Landscapes",
                         "value": "true"
                     },
                     {
-                        "name": "ImaginaryWildlands",
+                        "name": "imaginary_wildlands",
                         "type": "checkbox",
                         "label": "Imaginary Wildlands",
                         "value": "true"
                     },
                     {
-                        "name": "IncredibleIndia",
+                        "name": "incredible_india",
                         "type": "checkbox",
                         "label": "Incredible India",
                         "value": "false"
                     },
                     {
-                        "name": "ITookAPicture",
+                        "name": "itook_apicture",
                         "type": "checkbox",
                         "label": "I Took A Picture",
                         "value": "false"
                     },
                     {
-                        "name": "JoshuaTree",
+                        "name": "joshua_tree",
                         "type": "checkbox",
                         "label": "Joshua Tree",
                         "value": "false"
                     },
                     {
-                        "name": "NationalGeographic",
+                        "name": "national_geographic",
                         "type": "checkbox",
                         "label": "National Geographic",
                         "value": "false"
                     },
                     {
-                        "name": "Nature",
+                        "name": "nature",
                         "type": "checkbox",
-                        "label": "Nature",
+                        "label": "nature",
                         "value": "true"
                     },
                     {
-                        "name": "NatureGifs",
+                        "name": "nature_gifs",
                         "type": "checkbox",
                         "label": "Nature Gifs",
                         "value": "false"
                     },
                     {
-                        "name": "NaturePics",
+                        "name": "nature_pics",
                         "type": "checkbox",
                         "label": "Nature Pics",
                         "value": "false"
                     },
                     {
-                        "name": "NotSafeForNature",
+                        "name": "not_safe_for_nature",
                         "type": "checkbox",
                         "label": "Not Safe For Nature",
                         "value": "false"
                     },
                     {
-                        "name": "NZPhotos",
+                        "name": "nzphotos",
                         "type": "checkbox",
                         "label": "NZ Photos",
                         "value": "false"
@@ -759,13 +759,13 @@
                         "value": "false"
                     },
                     {
-                        "name": "Schweiz",
+                        "name": "schweiz",
                         "type": "checkbox",
-                        "label": "Schweiz",
+                        "label": "schweiz",
                         "value": "false"
                     },
                     {
-                        "name": "SpecArt",
+                        "name": "spec_art",
                         "type": "checkbox",
                         "label": "Spec Art",
                         "value": "false"
@@ -777,7 +777,7 @@
                         "value": "true"
                     },
                     {
-                        "name": "InterstellarArt",
+                        "name": "interstellar_art",
                         "type": "checkbox",
                         "label": "Interstellar Art",
                         "value": "true"
